@@ -32,7 +32,7 @@
 - camping meeting (front-end)
 
 **10/24(Tue)**
-- some stretch goals?
+- Admin pages
 
 **10/25(Wed)**
   - polish the application
@@ -51,8 +51,15 @@
 ---
 Data tables:
 * **app_user**
+  - app_user_id int primary key
+  - username varchar(50) not null
+  - password varchar(50) not null
 * **app_role**
+  - app_role_id int primary key
+  - app_role varchar(50) not null
 * **app_user_role** => bridge table
+  - app_user_id foreign key
+  - app_role_id foreign key
 * **about_user** => for simple data about user(used to show some description about the user)
 * **reviews**
 * **favorite** => for favorite campsites.

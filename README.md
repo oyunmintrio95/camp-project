@@ -1,7 +1,15 @@
 # camp-project
 ## Camping Community Website
 ---
+## Table of Contents
+1. Problem Description(#problem-description)
+2. Technical Solution(#technical-solution)
+3. Glossary(#glossary)
+4. High-Level Requirement(#high-level-requirement)
+5. User Stories/ Scenario(#user-stories)
+---
 
+<a name="problem-description"></a>
 ## 1. Problem Description
 > Camping is one of the outdoor recreation. It can be done by individuals or groups of people. Camping includes lots of manual work, from building a tent to cooking. It’s about spending a night getting out of your comfort zone(your home) but staying in the woods. It’s a chance to get in touch with nature and get away from it.
 >
@@ -9,7 +17,7 @@
 >
 > Another difficulty regarding camping is finding other campers who would camp together. For safety, knowing who will show up, how many people will go, and when they will get together for camping is essential.
 
-
+<a name="technical-solution"></a>
 ## 2.Technical Solution
 >Create an application for saving favorite campsites from a map and leave their own experience. Also, Make a forum where people can hold group camping.
 >
@@ -19,18 +27,19 @@
 > ### Scenario 2
 > Amanda wants to go camping. However, she has no one who would like to join her in her hobby. She doesn’t want to go by herself. She uses the campsite community application to find out if there’s some group camping coming up or if she should find people who would go with her. She decided to join a group camping around her place, and now she gets a chance to meet new people.
 
+<a name="glossary"></a>
 ## 3. Glossary
-> ### Camping Club
-> An organization based on a shared love of running. Clubs have members. They host runs. Some are informal with infrequent runs. Others are large, have budgets, and charge membership fees.
-> ### User
-> Anyone who signs up for a run. Runners can be club members, but don't have to be. All members are runners, but not all runners are members.
+> ### Camping Community
+> It's a community based on a shared love of camping. The community has members who are campers. They host group campings. 
 > ### Member
-> A runner who is formally affiliated with a running club. A runner can be a member of more than one club.
-> ### Club Admin
+> A camper who joined the community website. Because of the security and trustworthiness reasons, only members who signed up for the website can leave reviews and hold camping meetings.
+> ### Community Admin
+> A camping community member with an administrator role. They have more rights compared to users. They take charge of allowing group camping events.
 > A running club member with an administrator role. They have more privileges in the Group Run application. All admins are members, but not all members are admins.
-> ### Camping
-> A running event with a specific time, date, and location. A run may also include a route (stretch goal).
+> ### Camping meeting/ Group camping
+> A camping event with a specific time and date.
 
+<a name="high-level-requirement"></a>
 ## 4. High-Level Requirement
 > For landing:
 > - Browse campsites(anyone).
@@ -62,6 +71,7 @@
 > - edit post(USER, ADMIN)
 > - delete post(ADMIN)
 
+<a name="User Stories"></a>
 ## 5. User Stories.Scenarios
 > ### Comparing Campsite Function
 > ---

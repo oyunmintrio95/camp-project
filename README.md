@@ -6,7 +6,7 @@
 2. [ Technical Solution ](#technical-solution)
 3. [ Glossary ](#glossary)
 4. [ High-Level Requirement ](#high-level-requirement)
-5. [ User Stories/ Scenario] (#user-stories)
+5. [ User Stories/ Scenario](#user-stories)
 ---
 
 <a name="problem-description"></a>

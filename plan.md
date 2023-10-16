@@ -58,10 +58,19 @@ Data tables:
   - app_role_id int primary key
   - app_role varchar(50) not null
 * **app_user_role** => bridge table
-  - app_user_id foreign key
-  - app_role_id foreign key
+  - app_user_id int foreign key
+  - app_role_id int foreign key
 * **about_user** => for simple data about user(used to show some description about the user)
+  - about_user_id int primary key auto_increment
+  - app_user_id int foreign key
+  - name varchar(255) not null
+  - description varchar(255)/ text not null
+  - dob date not null
+  - gender varchar(10) null
 * **reviews**
+  - review_id
+  - app_user_id
+  - 
 * **favorite** => for favorite campsites.
 * **camp** => (for camping meeting events)
 * **image** => to upload images.(for both campings and reviews)
@@ -109,7 +118,7 @@ Data tables:
   * `UpdateById`
   * `DeleteById`
 * Create `FavoriteController` and add a path to `SecurityConfig`(2 hour)
-  * `@RequestMapping("/favorite")
+  * `@RequestMapping("/favorite")`
   * `@GetMapping` for `findAll`
   * `@GetMapping("/{favoriteId}"` for `findById`
   * `@PostMapping` for `create`

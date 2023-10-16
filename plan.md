@@ -153,15 +153,15 @@ Data tables:
 ## camping events
 ---
 ### Backend-spring
-* Create models, JDBCTemplateRepository and mapper for `camp` and test(1 hour)
-* Create `CampService` and test(1 hour)
+* Create models, JDBCTemplateRepository and mapper for `camp` and test(2 hour)
+* Create `CampService` and test(2 hour)
   * `findAll`
   * `findById`
   * `findByLocationId`
   * `Create`
   * `UpdateById`
   * `DeleteById`
-* Create `CampController` and add a path to `SecurityConfig`(1 hour)
+* Create `CampController` and add a path to `SecurityConfig`(2 hour)
   * `@RequestMapping("/camp")
   * `@GetMapping` for `findAll`
   * `@GetMapping("/{campwId}"` for `findById`

@@ -3,10 +3,12 @@
 ## Schedule by date
 **10/16(Mon)** 
   - Detail plan, wireframe, and database. Explore API and image upload.
- **10/17(Tue)**
+
+**10/17(Tue)**
   - Spring Security(back-end)
   - user login/logout/register(front-end)
- **10/18(Wed)**
+ 
+**10/18(Wed)**
   - about_user(backend)
   - user edit/delete(frontend)
   - Browse Campsite

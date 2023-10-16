@@ -21,22 +21,29 @@
 
 **10/20(Fri)**
  - camping review(front-end)
+
 **10/21(Sat)**
  - camping review(back-end)
+
 **10/22(Sun)**
    camping meeting (back-end)
+
 **10/23(Mon)**
 - camping meeting (front-end)
+
 **10/24(Tue)**
   - some stretch goals?
+
 **10/25(Wed)**
   - polish the application
   - create presentation ppt and polish README.md.
   - add some stretch goals.
+
 **10/26(Thu)**
   - polish the application
   - create presentation ppt and polish README.md.
   - add some stretch goals.
+
 **10/27(Fri)** : Presentation day!
 ---
 ## create database (4 hours)

@@ -2,11 +2,11 @@
 ## Camping Community Website
 ---
 ## Table of Contents
-1. Problem Description(#problem-description)
-2. Technical Solution(#technical-solution)
-3. Glossary(#glossary)
-4. High-Level Requirement(#high-level-requirement)
-5. User Stories/ Scenario(#user-stories)
+1. [ Problem Description ](#problem-description)
+2. [ Technical Solution ](#technical-solution)
+3. [ Glossary ](#glossary)
+4.[  High-Level Requirement ](#high-level-requirement)
+5.[ User Stories/ Scenario] (#user-stories)
 ---
 
 <a name="problem-description"></a>

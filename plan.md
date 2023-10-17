@@ -54,12 +54,15 @@ Data tables:
   - app_user_id int primary key
   - username varchar(50) not null
   - password varchar(50) not null
+    
 * **app_role**
   - app_role_id int primary key
   - app_role varchar(50) not null
+    
 * **app_user_role** => bridge table
   - app_user_id int foreign key
   - app_role_id int foreign key
+  - 
 * **about_user** => for simple data about user(used to show some description about the user)
   - about_user_id int primary key auto_increment
   - app_user_id int foreign key
@@ -67,6 +70,7 @@ Data tables:
   - description varchar(255)/ text not null
   - dob date not null
   - gender varchar(10) null
+    
 * **reviews**
   - review_id int primary key auto_increment
   - app_user_id int not null (fk)
@@ -76,10 +80,12 @@ Data tables:
   - image_id int ??
   - post_date datetime not null default now
   - edit_date datetime default null
+  - 
 * **favorite** => for favorite campsites.
   - favorite_id int primary key auto_increment
   - location_id int not null (fk)
   - app_user_id int not null (fk)
+    
 * **camp** => (for camping meeting events)
   - camp_id int primary key auto_increment
   - location_id int not null
@@ -91,9 +97,11 @@ Data tables:
   - post_date datetime not null default now
   - edit_date datetime default null
   - status varchar(50) not null default "PENDING" => (OPEN, CLOSED, PENDING, CANCELED)
+    
 * **camp_app_user**
   - camp_id (primary)
   - app_user_id(primary)
+    
 * **image** => to upload images.(for both campings and reviews)
   - image_id int primary key
   - image_path

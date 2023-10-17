@@ -68,12 +68,36 @@ Data tables:
   - dob date not null
   - gender varchar(10) null
 * **reviews**
-  - review_id
-  - app_user_id
-  - 
+  - review_id int primary key auto_increment
+  - app_user_id int not null (fk)
+  - location_id int not null
+  - title varchar(255) not null
+  - review text not null
+  - image_id int ??
+  - post_date datetime not null default now
+  - edit_date datetime default null
 * **favorite** => for favorite campsites.
+  - favorite_id int primary key auto_increment
+  - location_id int not null (fk)
+  - app_user_id int not null (fk)
 * **camp** => (for camping meeting events)
+  - camp_id int primary key auto_increment
+  - location_id int not null
+  - app_user_id int not null ( host)
+  - num_of_people int not null
+  - title varchar(255) not null
+  - post text not null
+  - image_id
+  - post_date datetime not null default now
+  - edit_date datetime default null
+  - status varchar(50) not null default "PENDING" => (OPEN, CLOSED, PENDING, CANCELED)
+* **camp_app_user**
+  - camp_id (primary)
+  - app_user_id(primary)
 * **image** => to upload images.(for both campings and reviews)
+  - image_id int primary key
+  - image_path
+  - image_code(to distinct purpose of image)
 
 * Create test schema with `set_known_good_state` (2 hours)
   
@@ -192,6 +216,7 @@ Data tables:
 ---
 
 ## STRETCH GOALS
+* Add reply function
 * Add a search functions to camping events
   * By location
   * By date
@@ -201,6 +226,7 @@ Data tables:
   * By user
   * By date?
 * Add pagination?
+* upvote for review
 * Add another forum where people can exchange or sell their camping equipments.
 
 

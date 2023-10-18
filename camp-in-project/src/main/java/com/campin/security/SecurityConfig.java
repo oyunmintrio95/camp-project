@@ -26,6 +26,7 @@ public class SecurityConfig {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/refresh-token").authenticated()
+                .antMatchers(HttpMethod.POST, "/api/register").permitAll()
                 .antMatchers("/**").denyAll()
                 .and()
                 .addFilter(new JwtRequestFilter(authenticationManager(authConfig), jwtConverter))

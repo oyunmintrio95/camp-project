@@ -1,5 +1,6 @@
 package com.camping.controllers;
 
+import com.camping.domain.Result;
 import com.camping.models.AppUser;
 import com.camping.security.AppUserService;
 import com.camping.security.JwtConverter;
@@ -56,7 +57,7 @@ public class AuthController {
                 credentials.get("username"), credentials.get("password"));
         if (result.isSuccess()) {
             Map<String, Integer> userId = new HashMap<>();
-            userId.put("user_id", result.getPayload().getId());
+            userId.put("user_id", result.getPayload().getAppUserId());
             return ResponseEntity.ok(userId);
         }
         return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);

@@ -27,8 +27,8 @@ create table app_user_role (
         references app_role(app_role_id)
 );
 
-create table about_user(
-	about_user_id int primary key auto_increment,
+create table user_profile(
+	user_profile_id int primary key auto_increment,
     app_user_id int not null,
     first_name varchar(50) not null,
     last_name varchar(50) not null,
@@ -72,7 +72,7 @@ create table camp(
     post text not null,
     post_date datetime not null default now(),
     edit_date datetime default null,
-    status varchar(50) not null default "PENDING",
+    `status` varchar(50) not null default "PENDING",
     constraint fk_camp_app_user_id
 		foreign key (app_user_id)
         references app_user(app_user_id)
@@ -110,4 +110,31 @@ insert into app_user_role
     values
     (1, 2),
     (2, 1);
+    
+insert into camp (location_id, app_user_id, num_of_people, title, post)
+	values
+    (1, 1, 5, "camp title 1", "camp post 1"),
+    (2, 2, 4, "camp title 2", "camp post 2");
+    
+insert into camp_app_user
+	values
+    (1,2),
+    (2,1);
+    
+insert into review (app_user_id, location_id, title, review)
+	values
+    (1, 1, "review title 1", "review content 1"),
+    (2, 2, "review title 2", "review content 2");
+    
+insert into favorite (app_user_id, location_id)
+	values
+    (1, 1),
+    (1, 2),
+    (2, 1),
+    (2, 2);
+    
+insert into user_profile ( app_user_id, first_name, last_name, `description`, dob, gender)
+	values
+    (1, 'Jhon', 'Smith', "I'm in 30's and I love fishing and barbecuing.", null , 'Male'),
+    (2, 'Sally', 'Jones', "I'm in 20's and I love hiking and some outdoor activities!", '1997-03-05', null);
 

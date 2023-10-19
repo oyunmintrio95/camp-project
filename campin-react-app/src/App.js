@@ -8,6 +8,9 @@ import AuthContext from "./context/AuthContext";
 import Login from "./components/Login";
 
 import { refreshToken, logout } from "./services/authAPI";
+import SignUpForm from "./components/Signup";
+import SignUp from "./components/Signup";
+import SearchCampsite from "./components/campsite/SearchCampsite";
 
 const TIMEOUT_MILLISECONDS = 14 * 60 * 1000;
 
@@ -66,6 +69,9 @@ function App() {
           <Routes>
             <Route path="/" />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />}/>
+
+            <Route path="/campsite" element={<SearchCampsite/>} />
           </Routes>
         </Router>
       </AuthContext.Provider>

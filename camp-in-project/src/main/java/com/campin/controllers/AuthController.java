@@ -55,11 +55,15 @@ public class AuthController {
 
     @PostMapping("/api/register")
     public ResponseEntity<?> register(@RequestBody Map<String, String> credentials) {
+        System.out.println("Am I even in the right controller?");
         Result<AppUser> result = appUserService.add(
                 credentials.get("username"), credentials.get("password"));
+        System.out.println("reuslt: "+result.getPayload());
+        System.out.println("reuslt: "+result);
+        System.out.println("result: "+result.getMessages());
         if (result.isSuccess()) {
             Map<String, Integer> userId = new HashMap<>();
-            userId.put("user_id", result.getPayload().getAppUserId());
+            userId.put("appUserId", result.getPayload().getAppUserId());
             return new ResponseEntity<>(userId, HttpStatus.CREATED);
         }
         return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);

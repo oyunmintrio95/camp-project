@@ -26,8 +26,8 @@ function Nav() {
         <div className="collapse navbar-collapse">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <NavLink className="nav-link" to="/">
-                Board Games
+              <NavLink className="nav-link" to="/campsite">
+                Campsites
               </NavLink>
             </li>
             {user && (

@@ -1,12 +1,9 @@
 package com.campin.models;
 
-import javax.persistence.*;
-
-@Entity
 public class Favorite {
 
     private int favoriteId;
-    private int locationId;
+    private String locationId;
     private int appUserId;
 
     public int getFavoriteId() {
@@ -17,11 +14,11 @@ public class Favorite {
         this.favoriteId = favoriteId;
     }
 
-    public int getLocationId() {
+    public String getLocationId() {
         return locationId;
     }
 
-    public void setLocationId(int locationId) {
+    public void setLocationId(String locationId) {
         this.locationId = locationId;
     }
 

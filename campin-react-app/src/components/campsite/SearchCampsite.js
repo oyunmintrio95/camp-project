@@ -1,36 +1,32 @@
 import { useState, useEffect } from "react";
-import xml2json from "xml-js";
+import { Loader } from "@googlemaps/js-api-loader"
+// import xml2json from "xml-js";
 // import XMLParser from 'react-xml-parser';
 import CampsiteDetail from "./CampsiteDetail";
 
 function SearchCampsite(){
 
     const [campsites, setCampsites] = useState([]);
+
+    // fetch('https://developer.nps.gov/api/v1/campgrounds?stateCode=CA&api_key=qOGB5Pye1mijeNs9sjhNIMPrTLdVUvy1WaqvjBny')
+
+    const loader = new Loader({
+        apiKey: "AIzaSyCE6PREhnCRE5E-WFNrZjoXpdQIQBaEUhQ",
+        version: "weekly",
+        ...additionalOptions,
+      });
+      
+      loader.load().then(async () => {
+        const { Map } = await google.maps.importLibrary("maps");
+      
+        map = new Map(document.getElementById("map"), {
+          center: { lat: -34.397, lng: 150.644 },
+          zoom: 8,
+        });
+      });
  
     useEffect(() => {
-        const init = {
-            // method: 'GET',
-            headers: {
-                'Content-Type': 'text/xml;charset=UTF-8',
-                "Access-Control-Allow-Origin": "*",
-            }
-        }
-
-        fetch(' http://api.amp.active.com/camping/campgrounds?pstate=CA&api_key=guu5djxyw5s7rfattpw93fny',init)
-			.then(res => res.text())
-            .then((xmlText) =>{
-                const jsonData = xml2json.xml2json(xmlText, {compact: true, spaces: 4});
-                setCampsites(JSON.parse(jsonData));
-            })
-            .catch((error) => {
-                console.error('Error fetching XML data:', error);
-            });
-			
-            // .then(data => {
-            //     var XMLParser = require('react-xml-parser');
-            //     const xml = new XMLParser().parseFromString(data);
-            //     console.log(xml)
-            // })
+    
           
           
     },[]);

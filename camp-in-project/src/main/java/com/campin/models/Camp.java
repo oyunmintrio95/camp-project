@@ -10,8 +10,10 @@ public class Camp {
     private int campId;
     private int appuserId;
     private List<AppUser> appUsers;
-    private int locationId;
+    private String locationId;
     private int numOfPeople;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String title;
     private String post;
     private LocalDateTime postDate;
@@ -41,11 +43,11 @@ public class Camp {
         this.appUsers = appUsers;
     }
 
-    public int getLocationId() {
+    public String getLocationId() {
         return locationId;
     }
 
-    public void setLocationId(int locationId) {
+    public void setLocationId(String locationId) {
         this.locationId = locationId;
     }
 
@@ -95,5 +97,21 @@ public class Camp {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 }

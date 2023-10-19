@@ -13,7 +13,7 @@ public class ReviewMapper implements RowMapper<Review> {
         Review review = new Review();
         review.setReviewId(rs.getInt("review_id"));
         review.setAppUserId(rs.getInt("app_user_id"));
-        review.setLocationId(rs.getInt("location_id"));
+        review.setLocationId(rs.getString("location_id"));
         review.setTitle(rs.getString("title"));
         review.setReview(rs.getString("review"));
         review.setPostDate(rs.getTimestamp("post_date").toLocalDateTime());

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class Review {
     private int reviewId;
     private int appUserId;
-    private int locationId;
+    private String locationId;
     private String title;
     private String review;
     private LocalDateTime postDate;
@@ -31,11 +31,11 @@ public class Review {
         this.appUserId = appUserId;
     }
 
-    public int getLocationId() {
+    public String getLocationId() {
         return locationId;
     }
 
-    public void setLocationId(int locationId) {
+    public void setLocationId(String locationId) {
         this.locationId = locationId;
     }
 

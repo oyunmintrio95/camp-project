@@ -42,7 +42,7 @@ create table user_profile(
 
 create table favorite(
 	favorite_id int primary key auto_increment,
-    location_id int not null,
+    location_id varchar(100) not null,
     app_user_id int not null,
     constraint fk_favorite_app_user_id
 		foreign key (app_user_id)
@@ -52,7 +52,7 @@ create table favorite(
 create table review(
 	reveiw_id int primary key auto_increment,
     app_user_id int not null,
-    location_id int not null,
+    location_id varchar(100) not null,
     title varchar(255) not null,
     review text not null,
     post_date datetime not null default now(),
@@ -65,9 +65,11 @@ create table review(
 
 create table camp(
 	camp_id int primary key auto_increment,
-    location_id int not null,
+    location_id varchar(100) not null,
     app_user_id int not null,
     num_of_people int not null,
+    start_date date not null,
+    end_date date not null,
     title varchar(255) not null,
     post text not null,
     post_date datetime not null default now(),
@@ -111,10 +113,10 @@ insert into app_user_role
     (1, 2),
     (2, 1);
     
-insert into camp (location_id, app_user_id, num_of_people, title, post)
+insert into camp (location_id, app_user_id, num_of_people, start_date, end_date, title, post)
 	values
-    (1, 1, 5, "camp title 1", "camp post 1"),
-    (2, 2, 4, "camp title 2", "camp post 2");
+    ("EA81BC45-C361-437F-89B8-5C89FB0D0F86", 1, 5,'2023-12-20','2023-12-22', "camp title 1", "camp post 1"),
+    ("1241C56B-7003-4FDF-A449-29DA8BCB0A41", 2, 4,'2023-11-10','2023-11-12', "camp title 2", "camp post 2");
     
 insert into camp_app_user
 	values
@@ -123,15 +125,15 @@ insert into camp_app_user
     
 insert into review (app_user_id, location_id, title, review)
 	values
-    (1, 1, "review title 1", "review content 1"),
-    (2, 2, "review title 2", "review content 2");
+    (1, "EA81BC45-C361-437F-89B8-5C89FB0D0F86", "review title 1", "review content 1"),
+    (2, "1241C56B-7003-4FDF-A449-29DA8BCB0A41", "review title 2", "review content 2");
     
 insert into favorite (app_user_id, location_id)
 	values
-    (1, 1),
-    (1, 2),
-    (2, 1),
-    (2, 2);
+    (1, "EA81BC45-C361-437F-89B8-5C89FB0D0F86"),
+    (1, "1241C56B-7003-4FDF-A449-29DA8BCB0A41"),
+    (2, "EA81BC45-C361-437F-89B8-5C89FB0D0F86"),
+    (2, "1241C56B-7003-4FDF-A449-29DA8BCB0A41");
     
 insert into user_profile ( app_user_id, first_name, last_name, `description`, dob, gender)
 	values

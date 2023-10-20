@@ -25,9 +25,9 @@ public class Result<T> {
         this.payload = payload;
     }
 
-    public void addMessage(ActionStatus status, String message) {
-        this.status = status;
+    public void addMessage(String message, ActionStatus status) {
         messages.add(message);
+        this.status = status;
     }
 
     public boolean isSuccess() {

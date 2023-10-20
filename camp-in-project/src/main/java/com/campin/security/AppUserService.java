@@ -50,7 +50,7 @@ public class AppUserService implements UserDetailsService {
             appUser = appUserRepository.add(appUser);
             result.setPayload(appUser);
         }catch (DuplicateKeyException e){
-            result.addMessage(ActionStatus.INVALID, "The provided username already exists");
+            result.addMessage("The provided username already exists", ActionStatus.INVALID);
         }
 
         return result;
@@ -59,23 +59,23 @@ public class AppUserService implements UserDetailsService {
     private Result<AppUser> validate(String username, String password) {
         Result<AppUser> result = new Result<>();
         if (username == null || username.isBlank()) {
-            result.addMessage(ActionStatus.INVALID, "username is required");
+            result.addMessage( "username is required", ActionStatus.INVALID);
             return result;
         }
 
         if (password == null) {
-            result.addMessage(ActionStatus.INVALID, "password is required");
+            result.addMessage("password is required", ActionStatus.INVALID);
             return result;
         }
 
         if (username.length() > 50) {
-            result.addMessage(ActionStatus.INVALID, "username must be less than 50 characters");
+            result.addMessage("username must be less than 50 characters", ActionStatus.INVALID);
         }
 
         if (!isValidPassword(password)) {
-            result.addMessage(ActionStatus.INVALID,
+            result.addMessage(
                     "password must be at least 8 character and contain a digit," +
-                            " a letter, and a non-digit/non-letter");
+                            " a letter, and a non-digit/non-letter", ActionStatus.INVALID);
         }
 
         return result;

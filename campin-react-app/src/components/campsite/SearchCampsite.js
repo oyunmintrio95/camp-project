@@ -8,7 +8,7 @@ function SearchCampsite(){
 
     const [campsites, setCampsites] = useState([]);
 
-    // fetch('https://developer.nps.gov/api/v1/campgrounds?stateCode=CA&api_key=qOGB5Pye1mijeNs9sjhNIMPrTLdVUvy1WaqvjBny')
+    fetch('https://developer.nps.gov/api/v1/campgrounds?stateCode=CA&api_key='+ process.env.NSP_API_KEY)
 
     const loader = new Loader({
         apiKey: "AIzaSyCE6PREhnCRE5E-WFNrZjoXpdQIQBaEUhQ",

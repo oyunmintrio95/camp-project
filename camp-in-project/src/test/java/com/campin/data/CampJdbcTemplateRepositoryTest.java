@@ -29,7 +29,7 @@ class CampJdbcTemplateRepositoryTest {
 
     @Test
     void shouldFindByAppUserId(){
-        List<Camp> campList = repository.findByAppUserId(1);
+        List<Camp> campList = repository.findByAppUserId(2);
         assertEquals(1, campList.size());
 
         campList = repository.findByAppUserId(99);

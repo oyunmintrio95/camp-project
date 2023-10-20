@@ -3,27 +3,15 @@ import { Loader } from "@googlemaps/js-api-loader"
 // import xml2json from "xml-js";
 // import XMLParser from 'react-xml-parser';
 import CampsiteDetail from "./CampsiteDetail";
+import Map from "../map/Map";
 
 function SearchCampsite(){
 
     const [campsites, setCampsites] = useState([]);
 
-    fetch('https://developer.nps.gov/api/v1/campgrounds?stateCode=CA&api_key='+ process.env.NSP_API_KEY)
+    // fetch('https://developer.nps.gov/api/v1/campgrounds?stateCode=CA&api_key='+ process.env.REACT_APP_API_KEY_2)
 
-    const loader = new Loader({
-        apiKey: "AIzaSyCE6PREhnCRE5E-WFNrZjoXpdQIQBaEUhQ",
-        version: "weekly",
-        ...additionalOptions,
-      });
-      
-      loader.load().then(async () => {
-        const { Map } = await google.maps.importLibrary("maps");
-      
-        map = new Map(document.getElementById("map"), {
-          center: { lat: -34.397, lng: 150.644 },
-          zoom: 8,
-        });
-      });
+    // console.log(process.env.REACT_APP_API_KEY_2)
  
     useEffect(() => {
     
@@ -37,6 +25,7 @@ function SearchCampsite(){
             {/* {campsites.map(campsite => {
                 <p>{campsite}</p>
             })} */}
+            <Map />
         </div>
     );
 }

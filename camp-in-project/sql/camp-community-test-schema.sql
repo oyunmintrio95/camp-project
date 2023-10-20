@@ -50,7 +50,7 @@ create table favorite(
 );
 
 create table review(
-	reveiw_id int primary key auto_increment,
+	review_id int primary key auto_increment,
     app_user_id int not null,
     location_id varchar(100) not null,
     title varchar(255) not null,
@@ -150,7 +150,7 @@ insert into favorite (app_user_id, location_id)
     
 insert into user_profile ( app_user_id, first_name, last_name, `description`, dob, gender)
 	values
-    (1, 'Jhon', 'Smith', "I'm in 30's and I love fishing and barbecuing.", null , 'Male'),
+    (1, 'John', 'Smith', "I'm in 30's and I love fishing and barbecuing.", null , 'Male'),
     (2, 'Sally', 'Jones', "I'm in 20's and I love hiking and some outdoor activities!", '1997-03-05', null);
     
 end//

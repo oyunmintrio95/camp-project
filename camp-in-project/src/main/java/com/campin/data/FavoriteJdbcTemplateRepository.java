@@ -54,8 +54,8 @@ public class FavoriteJdbcTemplateRepository implements FavoriteRepository {
     @Override
     public Favorite add(Favorite favorite) {
         final String sql = """
-                            insert into user_profile (app_user_id, location_id)
-                            values ( ?, ?);
+                            insert into favorite (app_user_id, location_id)
+                            values (?, ?);
                             """;
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {

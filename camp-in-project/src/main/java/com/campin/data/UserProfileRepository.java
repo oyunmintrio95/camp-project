@@ -8,5 +8,5 @@ public interface UserProfileRepository {
     UserProfile findById(int userProfileId);
     UserProfile add(UserProfile userProfile);
     boolean update(UserProfile userProfile);
-    boolean deleteByI(int userProfileId);
+    boolean deleteById(int userProfileId);
 }

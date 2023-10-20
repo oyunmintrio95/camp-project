@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -103,7 +104,9 @@ public class CampJdbcTemplateRepository implements CampRepository{
     }
 
     @Override
+    @Transactional
     public boolean deleteById(int campId) {
+        jdbcTemplate.update("delete from camp_app_user where camp_id =?", campId);
         return jdbcTemplate.update("delete from camp where camp_id =?", campId) >0;
     }
 }

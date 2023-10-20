@@ -17,7 +17,9 @@ public class ReviewMapper implements RowMapper<Review> {
         review.setTitle(rs.getString("title"));
         review.setReview(rs.getString("review"));
         review.setPostDate(rs.getTimestamp("post_date").toLocalDateTime());
-        review.setEditDate(rs.getTimestamp("edit_date").toLocalDateTime());
+        if(rs.getTimestamp("edit_date") != null){
+            review.setEditDate(rs.getTimestamp("edit_date").toLocalDateTime());
+        }
         return review ;
     }
 }

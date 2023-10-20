@@ -23,7 +23,9 @@ public class CampMapper implements RowMapper<Camp> {
         camp.setTitle(rs.getString("title"));
         camp.setPost(rs.getString("post"));
         camp.setPostDate(rs.getTimestamp("post_date").toLocalDateTime());
-        camp.setEditDate(rs.getTimestamp("edit_date").toLocalDateTime());
+        if(rs.getTimestamp("edit_date") != null){
+            camp.setEditDate(rs.getTimestamp("edit_date").toLocalDateTime());
+        }
         camp.setStatus(rs.getString("status"));
         return camp;
     }

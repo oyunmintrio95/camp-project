@@ -12,6 +12,7 @@ import SignUpForm from "./components/Signup";
 import SignUp from "./components/Signup";
 import SearchCampsite from "./components/campsite/SearchCampsite";
 import CampsiteDetail from "./components/campsite/CampsiteDetail";
+import UserprofileForm from "./components/userProfile/UserprofileForm";
 
 const TIMEOUT_MILLISECONDS = 14 * 60 * 1000;
 
@@ -68,10 +69,15 @@ function App() {
         <Router>
           <Nav />
           <Routes>
+            {/* home, user login/registration */}
             <Route path="/" />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />}/>
 
+            {/* userProfile */}
+            <Route path="/userprofile/add" element={<UserprofileForm />} />
+
+            {/* campsites */}
             <Route path="/campsite" element={<SearchCampsite/>} />
             <Route path="/campsite/detail/:locationId" element={<CampsiteDetail/>}/>
           </Routes>

@@ -92,10 +92,10 @@ export default function Map({campsites}){
                             <div className="col-md-8">
                                 <div className="card-body">
                                     <h5 className="card-title">{selected.name}</h5>
-                                    <p className="card-text">{selected.addresses.length !==0? selected.addresses[0].line1: " " } {selected.addresses[0].city},<br></br>{selected.addresses[0].stateCode}, {selected.addresses[0].countryCode}, {selected.addresses[0].postalCode}</p>
+                                    <p className="card-text">{selected.addresses.length !==0? selected.addresses[0].line1: " " } {selected.addresses.length !==0?selected.addresses[0].city: " "},<br></br>{selected.addresses.length !==0? selected.addresses[0].stateCode: " "}, {selected.addresses.length !==0? selected.addresses[0].countryCode: " "}, {selected.addresses.length !==0? selected.addresses[0].postalCode: " "}</p>
                                 </div>
                                 <div className="mt-2 d-flex justify-content-end ">
-                                    <Link className="btn btn-outline-success" to={`/campsite/detail/${selected.id}` } state = {selected}>Detail</Link>
+                                    <Link className="btn btn-outline-success" to={`/campsite/detail/${selected.id}` } state = {selected.parkCode}>Detail</Link>
                                 </div>
                                 
                             </div>

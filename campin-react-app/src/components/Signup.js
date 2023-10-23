@@ -32,6 +32,7 @@ function SignUp() {
         setErrors(data.errors);
       } else {
         setSuccess(true);
+  
       }
     });
   };
@@ -46,7 +47,7 @@ function SignUp() {
       {success ? (
         <div className="alert alert-success">
           Congratulations {credentials.username}, you have been registered.
-          Login <Link to="/login">here</Link>.
+          Login <Link to="/userprofile/add" state={credentials.username}>Make a Profile!</Link>.
         </div>
       ) : (
         <form onSubmit={handleSubmit}>

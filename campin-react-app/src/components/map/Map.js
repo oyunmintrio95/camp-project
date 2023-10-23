@@ -82,20 +82,20 @@ export default function Map({campsites}){
                 onCloseClick={() => {
                     setSelected(null);
                 }}>
-                    <div class="row g-0">
-                            <div class="col-md-4">
-                                { selected.images[0].url?
-                                <img src='/campsite_search_placeholder.jpg' class="img-fluid rounded-start" alt={selected.images[0].altText} 
-                                style = {{height: 100, width:100}}></img> : <img src={selected.images[0].url} class="img-fluid rounded-start" alt={selected.images[0].altText} 
+                    <div className="row g-0">
+                            <div className="col-md-4">
+                                {selected.images[0].url?
+                                <img src={selected.images[0].url} className="img-fluid rounded-start" alt={selected.images[0].altText} 
+                                style = {{height: 100, width:100}}></img> : <img src='/campsite_search_placeholder.jpg' className="img-fluid rounded-start" alt={selected.images[0].altText} 
                                 style = {{height: 100, width:100}}></img> }
                             </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">{selected.name}</h5>
-                                    <p class="card-text">{selected.addresses[0].line1? selected.addresses[0].line1: " " } {selected.addresses[0].city},<br></br>{selected.addresses[0].stateCode}, {selected.addresses[0].countryCode}, {selected.addresses[0].postalCode}</p>
+                            <div className="col-md-8">
+                                <div className="card-body">
+                                    <h5 className="card-title">{selected.name}</h5>
+                                    <p className="card-text">{selected.addresses.length !==0? selected.addresses[0].line1: " " } {selected.addresses[0].city},<br></br>{selected.addresses[0].stateCode}, {selected.addresses[0].countryCode}, {selected.addresses[0].postalCode}</p>
                                 </div>
                                 <div className="mt-2 d-flex justify-content-end ">
-                                    <Link className="btn btn-outline-success" to={`/campsite/detail/${selected.id}`}>Detail</Link>
+                                    <Link className="btn btn-outline-success" to={`/campsite/detail/${selected.id}` } state = {selected}>Detail</Link>
                                 </div>
                                 
                             </div>

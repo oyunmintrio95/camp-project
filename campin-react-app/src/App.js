@@ -11,6 +11,7 @@ import { refreshToken, logout } from "./services/authAPI";
 import SignUpForm from "./components/Signup";
 import SignUp from "./components/Signup";
 import SearchCampsite from "./components/campsite/SearchCampsite";
+import CampsiteDetail from "./components/campsite/CampsiteDetail";
 
 const TIMEOUT_MILLISECONDS = 14 * 60 * 1000;
 
@@ -72,6 +73,7 @@ function App() {
             <Route path="/signup" element={<SignUp />}/>
 
             <Route path="/campsite" element={<SearchCampsite/>} />
+            <Route path="/campsite/detail/:locationId" element={<CampsiteDetail/>}/>
           </Routes>
         </Router>
       </AuthContext.Provider>

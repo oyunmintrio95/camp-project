@@ -64,7 +64,7 @@ public class CampService {
             String msg = String.format("campId: %s, not found", camp.getCampId());
             result.addMessage(msg, ActionStatus.NOT_FOUND);
         }
-        
+
         return result;
     }
 
@@ -85,7 +85,7 @@ public class CampService {
         Result<Camp> result = new Result<>();
 
         if(camp == null){
-            result.addMessage("review cannot be null", ActionStatus.INVALID);
+            result.addMessage("camp cannot be null", ActionStatus.INVALID);
             return result;
         }
         if(camp.getAppuserId() == 0){

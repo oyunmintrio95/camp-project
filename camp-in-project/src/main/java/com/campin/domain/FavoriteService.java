@@ -31,7 +31,7 @@ public class FavoriteService {
         }
 
         if(favorite.getFavoriteId() != 0 ){
-            result.addMessage("reviewId must be set for `add` operation", ActionStatus.INVALID);
+            result.addMessage("favoriteId must be set for `add` operation", ActionStatus.INVALID);
             return result;
         }
 

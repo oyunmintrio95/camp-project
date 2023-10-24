@@ -13,6 +13,7 @@ import SignUp from "./components/Signup";
 import SearchCampsite from "./components/campsite/SearchCampsite";
 import CampsiteDetail from "./components/campsite/CampsiteDetail";
 import UserprofileForm from "./components/userProfile/UserprofileForm";
+import ReviewForm from "./components/review/ReviewForm";
 
 const TIMEOUT_MILLISECONDS = 14 * 60 * 1000;
 
@@ -80,6 +81,9 @@ function App() {
             {/* campsites */}
             <Route path="/campsite" element={<SearchCampsite/>} />
             <Route path="/campsite/detail/:locationId" element={<CampsiteDetail/>}/>
+
+            {/* review */}
+            <Route path="review/add" element={<ReviewForm/>} />
           </Routes>
         </Router>
       </AuthContext.Provider>

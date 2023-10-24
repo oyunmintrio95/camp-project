@@ -4,37 +4,37 @@ import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 
 export default function CampsiteDetail(){
 
-    const [campsite, setCampsite] = useState(null);
+    // const [campsite, setCampsite] = useState(null);
     const location = useLocation();
-    const parkCode = location.state;
+    const campsite = location.state;
     // console.log(campsite.name);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const {locationId} = useParams();
 
-    useEffect(() => {
-        if(locationId){
-            fetch(`https://developer.nps.gov/api/v1/campgrounds?parkCode=${parkCode}&q=${locationId}&api_key=${process.env.REACT_APP_API_KEY_2}`)
-            .then(res => {
-                if(res.ok) {
-                     return res.json()
-                }else{
-                    return Promise.reject(
-                        new Error(`Unexpected status code ${res.status}`)
-                    );
-                }
-            })
-            .then( info => {
-                console.log(info.data);
-                console.log(info.data[0])
-                setCampsite(info.data[0])})
-            .catch(error =>{
-                console.error(error)
-                navigate("/campsite/search")
-            })
-        }
+    // useEffect(() => {
+    //     if(locationId){
+    //         fetch(`https://developer.nps.gov/api/v1/campgrounds?parkCode=${parkCode}&q=${locationId}&api_key=${process.env.REACT_APP_API_KEY_2}`)
+    //         .then(res => {
+    //             if(res.ok) {
+    //                  return res.json()
+    //             }else{
+    //                 return Promise.reject(
+    //                     new Error(`Unexpected status code ${res.status}`)
+    //                 );
+    //             }
+    //         })
+    //         .then( info => {
+    //             console.log(info.data);
+    //             console.log(info.data[0])
+    //             setCampsite(info.data[0])})
+    //         .catch(error =>{
+    //             console.error(error)
+    //             navigate("/campsite/search")
+    //         })
+    //     }
 
-    }, []);
+    // }, []);
 
     
     return(
@@ -90,7 +90,10 @@ export default function CampsiteDetail(){
                     <div>
                         {campsite.regulationsOverview}
                     </div>    
-                </div>
+        </div>
+        <div className="mb-2 d-flex justify-content-end">
+                <Link className="btn btn-success" to={'/review/add'}>Add Review</Link>
+        </div>
         </>
         
     );

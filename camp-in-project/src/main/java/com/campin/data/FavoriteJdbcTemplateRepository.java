@@ -52,6 +52,18 @@ public class FavoriteJdbcTemplateRepository implements FavoriteRepository {
     }
 
     @Override
+    public Favorite findByKey(int appUserId, String locationId) {
+        final String sql = """
+                    select favorite_id, location_id, app_user_id
+                    from favorite
+                    where app_user_id = ? and location_id = ?;
+                """;
+        return jdbcTemplate.query(sql, new FavoriteMapper(), appUserId, locationId).stream()
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
     public Favorite add(Favorite favorite) {
         final String sql = """
                             insert into favorite (app_user_id, location_id)

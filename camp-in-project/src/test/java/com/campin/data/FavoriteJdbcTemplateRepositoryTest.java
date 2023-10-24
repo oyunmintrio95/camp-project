@@ -39,6 +39,12 @@ class FavoriteJdbcTemplateRepositoryTest {
     }
 
     @Test
+    void shouldFindByKey(){
+        Favorite arg = repository.findByKey(1, "EA81BC45-C361-437F-89B8-5C89FB0D0F86");
+        assertEquals(1, arg.getFavoriteId());
+    }
+
+    @Test
     void shouldFindByFavoriteId(){
         Favorite arg = repository.findById(1);
         assertEquals(1, arg.getAppUserId());

@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
+
+import AuthContext from "../../context/AuthContext";
 
 
 export default function CampsiteDetail(){
@@ -7,10 +9,61 @@ export default function CampsiteDetail(){
     // const [campsite, setCampsite] = useState(null);
     const location = useLocation();
     const campsite = location.state;
+    const [userId, setUserId] = useState(0);
+    
+    const [isFavorite, setIsFavorite] = useState(false);
+    const {user} = useContext(AuthContext);
+
     // console.log(campsite.name);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const {locationId} = useParams();
+
+    const [favorite, setFavorite] = useState(null);
+
+   
+
+    const fetchFavorite = () => {
+        const jwtToken = localStorage.getItem('jwt_token');
+        if (!jwtToken) {
+            return Promise.reject('Unauthorized.')
+          }
+        const init = {
+            headers: {
+                "Authorization": "Bearer " + jwtToken
+            }
+        }
+        fetch(`http://localhost:8080/api/favorite/${user.userId}/${locationId}`,init)
+        .then(res => {
+           if(res.status === 200){
+                console.log(" success!")
+                setIsFavorite(true);
+                return res.json();
+           }else if(res.status === 404) {
+                console.log("cannot find!")
+                setIsFavorite(false);
+           }else{
+                console.log("unexpected error!")
+                setIsFavorite(false);
+           }
+        })
+        .then(data => {
+            setFavorite(data)
+            console.log(favorite);
+        });
+    
+    
+    }
+
+    useEffect(() => {
+        if(user){
+           fetchFavorite();
+           console.log(isFavorite);
+        }
+        
+    },[])
+
+
 
     // useEffect(() => {
     //     if(locationId){
@@ -36,10 +89,91 @@ export default function CampsiteDetail(){
 
     // }, []);
 
+    function handleFavoriteAdd(){
+        const jwtToken = localStorage.getItem('jwt_token');
+        if (!jwtToken) {
+            return Promise.reject('Unauthorized.')
+          }
+        const config = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + jwtToken,
+            },
+            body: JSON.stringify({
+                appUserId: user.userId,
+                locationId: locationId,
+                // parkCode: campsite.parkCode,
+            })
+        }
+
+        fetch(`http://localhost:8080/api/favorite`, config)
+            .then(res => {
+                if(res.ok){
+                    console.log("added!");
+                    setIsFavorite(true);
+                    fetchFavorite();
+                }else{
+                    setIsFavorite(false);
+                    return res.json();
+                }
+            })
+            .then(errs => {
+                if(errs){
+                    setIsFavorite(false);
+                    return Promise.reject(errs);
+                }
+            })
+            // .catch(errs => {
+            //     if(errs.length){
+            //         setErrors(errs);
+            //     }else{
+            //         setErrors([errs]);
+            //     }
+            // });
+        
+
+    }
+
+    function handleFavoriteDelete(){
+        const jwtToken = localStorage.getItem('jwt_token');
+        if (!jwtToken) {
+            return Promise.reject('Unauthorized.')
+          }
+        
+        const config = {
+            method: "DELETE",
+            headers: {
+                'Authorization': "Bearer " + jwtToken,
+            },
+        }
+
+        fetch(`http://localhost:8080/api/favorite/${favorite.favoriteId}`, config)
+        .then(res => {
+            if(res.status === 204){
+                setIsFavorite(false);
+            }else{
+                setIsFavorite(true);
+            }
+        })
+
+    }
+
     
     return(
         <>
-        <h2> {campsite.name}</h2>
+        <div className="mb-2 d-flex justify-content-between">
+            <div>
+                <h2> {campsite.name} {user.userId}</h2>
+            </div>
+            <div>
+                {user && !isFavorite? <a><i className="bi bi-star fs-3" onClick={handleFavoriteAdd}></i></a> : <a  onClick={handleFavoriteDelete}><i className="bi bi-star-fill fs-3" style={{color: "#ffbf00"}}></i></a>  }
+            </div>
+            
+            
+
+        </div>
+        
         <div className="row">
             <div className = "col">
             { campsite.images[0].url?
@@ -92,7 +226,7 @@ export default function CampsiteDetail(){
                     </div>    
         </div>
         <div className="mb-2 d-flex justify-content-end">
-                <Link className="btn btn-success" to={'/review/add'}>Add Review</Link>
+                {user && <Link className="btn btn-success" to={'/review/add'}>Add Review</Link>}
         </div>
         </>
         

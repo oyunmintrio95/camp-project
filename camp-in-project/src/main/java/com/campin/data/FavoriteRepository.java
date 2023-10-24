@@ -10,6 +10,7 @@ public interface FavoriteRepository{
     List<Favorite> findAll();
     List<Favorite> findByAppUserId(int appUserId);
     Favorite findById(int favoriteId);
+    Favorite findByKey(int appUserId, String locationId);
     Favorite add(Favorite favorite);
     boolean update(Favorite favorite);
     boolean deleteById(int favoriteId);

@@ -23,7 +23,11 @@ public class FavoriteService {
     public Favorite findById(int favoriteId){
         return repository.findById(favoriteId);
     }
-    Result<Favorite> add(Favorite favorite){
+
+    public Favorite findByKey(int appUserId, String locationId){
+        return repository.findByKey(appUserId, locationId);
+    }
+    public Result<Favorite> add(Favorite favorite){
         Result<Favorite> result = validate(favorite);
 
         if(!result.isSuccess()){
@@ -39,7 +43,7 @@ public class FavoriteService {
         result.setPayload(favorite);
         return result;
     }
-    Result<Favorite> update(Favorite favorite){
+    public Result<Favorite> update(Favorite favorite){
         Result<Favorite> result = validate(favorite);
 
         if(!result.isSuccess()){
@@ -59,7 +63,7 @@ public class FavoriteService {
         return result;
 
     }
-    boolean deleteById(int favoriteId){
+    public boolean deleteById(int favoriteId){
         return repository.deleteById(favoriteId);
     }
 
@@ -76,8 +80,18 @@ public class FavoriteService {
         if(Validations.isNullORBlank(favorite.getLocationId())){
             result.addMessage("locationId is required", ActionStatus.INVALID);
         }
+        if(isDuplicate(favorite)){
+            result.addMessage("appUserId + locationId already exist", ActionStatus.INVALID);
+        }
 
         return result;
 
+    }
+
+    private boolean isDuplicate(Favorite favorite){
+        if(repository.findByKey(favorite.getAppUserId(), favorite.getLocationId()) != null){
+            return true;
+        }
+        return false;
     }
 }

@@ -11,9 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +30,15 @@ public class AuthController {
         this.appUserService = appUserService;
         this.jwtConverter = jwtConverter;
         this.authenticationManager = authenticationManager;
+    }
+
+    @GetMapping("/api/user/{username}")
+    public ResponseEntity<AppUser> findByUsername(@PathVariable String username){
+       AppUser appUser = appUserService.findByUsername(username);
+       if(appUser == null){
+           return ResponseEntity.notFound().build();
+       }
+       return ResponseEntity.ok(appUser);
     }
 
     @PostMapping("/api/login")
@@ -55,12 +62,9 @@ public class AuthController {
 
     @PostMapping("/api/register")
     public ResponseEntity<?> register(@RequestBody Map<String, String> credentials) {
-        System.out.println("Am I even in the right controller?");
         Result<AppUser> result = appUserService.add(
                 credentials.get("username"), credentials.get("password"));
-        System.out.println("reuslt: "+result.getPayload());
-        System.out.println("reuslt: "+result);
-        System.out.println("result: "+result.getMessages());
+
         if (result.isSuccess()) {
             Map<String, Integer> userId = new HashMap<>();
             userId.put("appUserId", result.getPayload().getAppUserId());

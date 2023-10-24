@@ -13,6 +13,7 @@ export async function login(credentials){
     const response = await fetch(url + '/api/login', init);
     if(response.status === 200){
         const jwtTokenResponse = await response.json();
+        console.log(jwtTokenResponse);
         localStorage.setItem('jwt_token', jwtTokenResponse.jwt_token);
         return makeUserFromJwt(jwtTokenResponse.jwt_token);
     }else{
@@ -73,9 +74,11 @@ function makeUserFromJwt(jwtToken){
     if(jwtParts.length === 3){
         const userData = atob(jwtParts[1]);
         const decodedToken = JSON.parse(userData);
+        console.log(userData);
         return {
             username: decodedToken.sub,
-            authorities: decodedToken.authorities
+            authorities: decodedToken.authorities,
+            userId: decodedToken.user_id
         };
     }
 }

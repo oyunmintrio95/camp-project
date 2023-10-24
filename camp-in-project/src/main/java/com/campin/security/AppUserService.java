@@ -24,6 +24,15 @@ public class AppUserService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    public AppUser findByUsername(String username){
+        AppUser appUser = appUserRepository.findByUsername(username);
+
+        if(appUser == null || !appUser.isEnabled()){
+            throw new UsernameNotFoundException(String.format("%s not found.", username));
+        }
+
+        return appUser;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -43,61 +52,71 @@ public class AppUserService implements UserDetailsService {
             return result;
         }
         password = passwordEncoder.encode(password);
+        System.out.println("encoded password: " + password);
 
         AppUser appUser = new AppUser(0, username, password, true, List.of("USER"));
 
-        try{
-            appUser = appUserRepository.add(appUser);
-            result.setPayload(appUser);
-        }catch (DuplicateKeyException e){
-            result.addMessage("The provided username already exists", ActionStatus.INVALID);
-        }
+        result.setPayload(appUserRepository.add(appUser));
 
         return result;
 
     }
     private Result<AppUser> validate(String username, String password) {
         Result<AppUser> result = new Result<>();
+
         if (username == null || username.isBlank()) {
-            result.addMessage( "username is required", ActionStatus.INVALID);
-            return result;
+            result.addMessage("username is required", ActionStatus.INVALID);
         }
 
-        if (password == null) {
+        if (password == null || password.isBlank()) {
             result.addMessage("password is required", ActionStatus.INVALID);
+        }
+
+        if (!result.isSuccess()) {
             return result;
         }
 
         if (username.length() > 50) {
-            result.addMessage("username must be less than 50 characters", ActionStatus.INVALID);
+            result.addMessage("username must be 50 characters max", ActionStatus.INVALID);
         }
 
-        if (!isValidPassword(password)) {
-            result.addMessage(
-                    "password must be at least 8 character and contain a digit," +
-                            " a letter, and a non-digit/non-letter", ActionStatus.INVALID);
+        if (!validatePassword(password)) {
+            result.addMessage("password must be at least 8 character and contain a digit, a letter, and a non-digit/non-letter", ActionStatus.INVALID);
+        }
+
+        if (!result.isSuccess()) {
+            return result;
+        }
+
+        try {
+            if (loadUserByUsername(username) != null) {
+                result.addMessage("the provided username already exists", ActionStatus.INVALID);
+            }
+        } catch (UsernameNotFoundException e) {
+            // good!
         }
 
         return result;
     }
 
-    private boolean isValidPassword(String password){
-        if(password.length() < 8){
+    private boolean validatePassword(String password) {
+        if (password.length() < 8) {
             return false;
         }
 
         int digits = 0;
         int letters = 0;
         int others = 0;
-        for(char c: password.toCharArray()){
-            if(Character.isDigit(c)){
+        for (char c : password.toCharArray()) {
+            if (Character.isDigit(c)) {
                 digits++;
-            }else if(Character.isLetter(c)){
+            } else if (Character.isLetter(c)) {
                 letters++;
-            }else{
+            } else {
                 others++;
             }
         }
+
         return digits > 0 && letters > 0 && others > 0;
     }
 

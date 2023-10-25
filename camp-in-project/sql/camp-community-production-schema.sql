@@ -50,13 +50,16 @@ create table favorite(
 );
 
 create table review(
-	reveiw_id int primary key auto_increment,
+	review_id int primary key auto_increment,
     app_user_id int not null,
     location_id varchar(100) not null,
     title varchar(255) not null,
     review text not null,
     post_date datetime not null default now(),
     edit_date datetime default null,
+    img_url varchar(255),
+    park_code varchar(10) not null,
+    author varchar(100) not null,
 	constraint fk_review_app_user_id
 		foreign key (app_user_id)
         references app_user(app_user_id)
@@ -123,10 +126,10 @@ insert into camp_app_user
     (1,2),
     (2,1);
     
-insert into review (app_user_id, location_id, title, review)
+insert into review (app_user_id, location_id, title, review, img_url, park_code, author)
 	values
-    (1, "EA81BC45-C361-437F-89B8-5C89FB0D0F86", "review title 1", "review content 1"),
-    (2, "1241C56B-7003-4FDF-A449-29DA8BCB0A41", "review title 2", "review content 2");
+    (1, "EA81BC45-C361-437F-89B8-5C89FB0D0F86", "review title 1", "review content 1", "date-of-birth-1008396_640.png", "amis","john@smith.com"),
+    (2, "1241C56B-7003-4FDF-A449-29DA8BCB0A41", "review title 2", "review content 2", "date-of-birth-1008396_640.png","grsm","sally@jones.com");
     
 insert into favorite (app_user_id, location_id)
 	values
@@ -137,6 +140,6 @@ insert into favorite (app_user_id, location_id)
     
 insert into user_profile ( app_user_id, first_name, last_name, `description`, dob, gender)
 	values
-    (1, 'Jhon', 'Smith', "I'm in 30's and I love fishing and barbecuing.", null , 'Male'),
+    (1, 'John', 'Smith', "I'm in 30's and I love fishing and barbecuing.", null , 'Male'),
     (2, 'Sally', 'Jones', "I'm in 20's and I love hiking and some outdoor activities!", '1997-03-05', null);
 

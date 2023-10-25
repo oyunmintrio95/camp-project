@@ -22,7 +22,7 @@ public class ReviewJdbcTemplateRepository implements ReviewRepository{
     @Override
     public List<Review> findAll() {
         final String sql = """
-                            select review_id, app_User_id, location_id, title, review, post_date, edit_date
+                            select review_id, app_User_id, location_id, title, review, post_date, edit_date, img_url, park_code, author
                             from review;
                             """;
         return jdbcTemplate.query(sql, new ReviewMapper());
@@ -31,7 +31,7 @@ public class ReviewJdbcTemplateRepository implements ReviewRepository{
     @Override
     public Review findById(int reviewId) {
         final String sql = """
-                            select review_id, app_User_id, location_id, title, review, post_date, edit_date
+                            select review_id, app_User_id, location_id, title, review, post_date, edit_date, img_url, park_code, author
                             from review
                             where review_id = ?;
                             """;
@@ -43,7 +43,7 @@ public class ReviewJdbcTemplateRepository implements ReviewRepository{
     @Override
     public List<Review> findByAppUserId(int appUserId) {
         final String sql = """
-                            select review_id, app_User_id, location_id, title, review, post_date, edit_date
+                            select review_id, app_User_id, location_id, title, review, post_date, edit_date, img_url, park_code, author
                             from review
                             where app_user_id = ?;
                             """;
@@ -51,10 +51,20 @@ public class ReviewJdbcTemplateRepository implements ReviewRepository{
     }
 
     @Override
+    public List<Review> findByLocationId(String locationId) {
+        final String sql = """
+                            select review_id, app_User_id, location_id, title, review, post_date, edit_date, img_url, park_code, author
+                            from review
+                            where location_id = ?;
+                            """;
+        return jdbcTemplate.query(sql, new ReviewMapper(), locationId);
+    }
+
+    @Override
     public Review add(Review review) {
         final String sql = """
-                            insert into review (app_user_id, location_id, title, review)
-                            values ( ?, ?, ?, ?);
+                            insert into review (app_user_id, location_id, title, review, img_url, park_code, author)
+                            values ( ?, ?, ?, ?, ?, ?, ?);
                             """;
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowAffected = jdbcTemplate.update(connection -> {
@@ -63,6 +73,9 @@ public class ReviewJdbcTemplateRepository implements ReviewRepository{
             ps.setString(2, review.getLocationId());
             ps.setString(3, review.getTitle());
             ps.setString(4, review.getReview());
+            ps.setString(5, review.getImgUrl());
+            ps.setString(6, review.getParkCode());
+            ps.setString(7, review.getAuthor());
             return ps;
         }, keyHolder);
 

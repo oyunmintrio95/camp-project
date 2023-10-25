@@ -57,6 +57,9 @@ create table review(
     review text not null,
     post_date datetime not null default now(),
     edit_date datetime default null,
+    img_url varchar(255),
+	park_code varchar(10) not null,
+    author varchar(100) not null,
 	constraint fk_review_app_user_id
 		foreign key (app_user_id)
         references app_user(app_user_id)
@@ -136,10 +139,10 @@ insert into camp_app_user
     (1,2),
     (2,1);
     
-insert into review (app_user_id, location_id, title, review)
+insert into review (app_user_id, location_id, title, review, img_url, park_code, author)
 	values
-    (1, "EA81BC45-C361-437F-89B8-5C89FB0D0F86", "review title 1", "review content 1"),
-    (2, "1241C56B-7003-4FDF-A449-29DA8BCB0A41", "review title 2", "review content 2");
+    (1, "EA81BC45-C361-437F-89B8-5C89FB0D0F86", "review title 1", "review content 1", "https://campen-joy-bucket.s3.amazonaws.com/landscape-g78e0b0e38_1280.jpg", "amis","john@smith.com"),
+    (2, "1241C56B-7003-4FDF-A449-29DA8BCB0A41", "review title 2", "review content 2", "https://campen-joy-bucket.s3.amazonaws.com/landscape-g78e0b0e38_1280.jpg","grsm","sally@jones.com");
     
 insert into favorite (app_user_id, location_id)
 	values

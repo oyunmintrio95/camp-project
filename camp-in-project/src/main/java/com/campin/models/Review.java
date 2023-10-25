@@ -12,8 +12,11 @@ public class Review {
     private String locationId;
     private String title;
     private String review;
+    private String author;
+    private String parkCode;
     private LocalDateTime postDate;
     private LocalDateTime editDate;
+    private String imgUrl;
 
     public int getReviewId() {
         return reviewId;
@@ -69,5 +72,29 @@ public class Review {
 
     public void setEditDate(LocalDateTime editDate) {
         this.editDate = editDate;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getParkCode() {
+        return parkCode;
+    }
+
+    public void setParkCode(String parkCode) {
+        this.parkCode = parkCode;
     }
 }

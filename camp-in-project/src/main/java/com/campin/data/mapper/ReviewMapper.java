@@ -1,5 +1,6 @@
 package com.campin.data.mapper;
 
+import com.campin.models.AppUser;
 import com.campin.models.Review;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -20,6 +21,11 @@ public class ReviewMapper implements RowMapper<Review> {
         if(rs.getTimestamp("edit_date") != null){
             review.setEditDate(rs.getTimestamp("edit_date").toLocalDateTime());
         }
+        if(rs.getString("img_url") != null){
+            review.setImgUrl(rs.getString("img_url"));
+        }
+        review.setParkCode(rs.getString("park_code"));
+        review.setAuthor(rs.getString("author"));
         return review ;
     }
 }

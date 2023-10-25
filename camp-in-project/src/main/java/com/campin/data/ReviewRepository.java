@@ -9,7 +9,7 @@ public interface ReviewRepository {
     List<Review> findAll();
     Review findById(int reviewId);
     List<Review> findByAppUserId(int appUserId);
-
+    List<Review> findByLocationId(String locationId);
     Review add(Review review);
     boolean update(Review review);
     boolean deleteById(int reviewId);

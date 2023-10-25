@@ -26,6 +26,8 @@ public class ReviewService {
         return repository.findByAppUserId(appUserId);
     }
 
+    public List<Review> findByLocationId(String locationId){return repository.findByLocationId(locationId);}
+
     public Result<Review> add(Review review){
         Result<Review> result = validate(review);
         if(!result.isSuccess()){

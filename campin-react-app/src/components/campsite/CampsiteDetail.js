@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 
 import AuthContext from "../../context/AuthContext";
+import ReviewList from "../review/ReviewList";
 
 
 export default function CampsiteDetail(){
@@ -225,8 +226,16 @@ export default function CampsiteDetail(){
                         {campsite.regulationsOverview}
                     </div>    
         </div>
-        <div className="mb-2 d-flex justify-content-end">
-                {user && <Link className="btn btn-success" to={'/review/add'}>Add Review</Link>}
+        <div className="mb-2 d-flex justify-content-between">
+            <div>
+                <h1>Reviews</h1>
+            </div>
+            <div>
+                {user && <Link className="btn btn-success" to={'/review/add'} state={campsite}>Add Review</Link>}
+            </div>
+        </div>
+        <div className="mb-2">
+                <ReviewList locationId = {locationId}/>
         </div>
         </>
         

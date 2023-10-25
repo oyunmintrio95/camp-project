@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.GetUrlRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -43,6 +46,9 @@ public class ReviewController {
         return service.findByAppUserId(appUserId);
     }
 
+    @GetMapping("/location/{locationId}")
+    public List<Review> findByLocationId(@PathVariable String locationId){return service.findByLocationId(locationId);}
+
     @PostMapping
     public ResponseEntity<Object> add(@org.springframework.web.bind.annotation.RequestBody Review review){
 //        review.setAppUserId(review.getAppUserId());
@@ -54,7 +60,7 @@ public class ReviewController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<String> upload(MultipartFile file){
+    public ResponseEntity<HashMap<String, String>> upload(MultipartFile file){
         try{
             S3Client s3 = S3Client
                     .builder()
@@ -66,9 +72,20 @@ public class ReviewController {
                     .key(file.getOriginalFilename())
                     .build();
 
-           PutObjectResponse response = s3.putObject(request,RequestBody.fromBytes(file.getBytes()));
+            GetUrlRequest urlRequest = GetUrlRequest.builder()
+                    .bucket("campen-joy-bucket")
+                    .key(file.getOriginalFilename())
+                    .build();
 
-            return new ResponseEntity<>(response.eTag(), HttpStatus.CREATED);
+            URL url = s3.utilities().getUrl(urlRequest);
+            System.out.println("The URL for  "+ file.getOriginalFilename() +" is "+ url);
+
+            HashMap<String, String> urlMap = new HashMap<>();
+            urlMap.put("url", url.toString());
+
+            PutObjectResponse response = s3.putObject(request,RequestBody.fromBytes(file.getBytes()));
+
+            return new ResponseEntity<>(urlMap, HttpStatus.CREATED);
         }catch(IOException e){
             System.err.println(e.getMessage());
         }

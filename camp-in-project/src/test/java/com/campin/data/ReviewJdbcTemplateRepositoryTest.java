@@ -50,8 +50,18 @@ class ReviewJdbcTemplateRepositoryTest {
     }
 
     @Test
+    void shouldFindByLocationId(){
+        List<Review> reviews = repository.findByLocationId("EA81BC45-C361-437F-89B8-5C89FB0D0F86");
+        assertEquals(1, reviews.size());
+
+        reviews = repository.findByLocationId("aslfd");
+        assertEquals(0, reviews.size());
+    }
+
+    @Test
     void shouldAdd(){
         Review review = makeReview();
+        review.setImgUrl(null);
         Review actual = repository.add(review);
         assertNotNull(actual);
         assertEquals(1, actual.getAppUserId());
@@ -81,6 +91,9 @@ class ReviewJdbcTemplateRepositoryTest {
         review.setLocationId("location 1");
         review.setTitle("title 1");
         review.setReview("review 1");
+        review.setImgUrl("image_url1");
+        review.setParkCode("pach");
+        review.setAuthor("john@smith.com");
         return review;
     }
 

@@ -9,8 +9,10 @@ export default function CampsiteDetail(){
 
     // const [campsite, setCampsite] = useState(null);
     const location = useLocation();
-    const campsite = location.state;
+    const parkCode = location.state;
     const [userId, setUserId] = useState(0);
+
+    const [campsite, setCampsite] = useState(null);
     
     const [isFavorite, setIsFavorite] = useState(false);
     const {user} = useContext(AuthContext);
@@ -37,58 +39,52 @@ export default function CampsiteDetail(){
         fetch(`http://localhost:8080/api/favorite/${user.userId}/${locationId}`,init)
         .then(res => {
            if(res.status === 200){
-                console.log(" success!")
                 setIsFavorite(true);
                 return res.json();
            }else if(res.status === 404) {
-                console.log("cannot find!")
                 setIsFavorite(false);
            }else{
-                console.log("unexpected error!")
                 setIsFavorite(false);
            }
         })
         .then(data => {
             setFavorite(data)
-            console.log(favorite);
         });
     
     
     }
 
-    useEffect(() => {
-        if(user){
-           fetchFavorite();
-           console.log(isFavorite);
-        }
-        
-    },[])
-
-
-
     // useEffect(() => {
-    //     if(locationId){
-    //         fetch(`https://developer.nps.gov/api/v1/campgrounds?parkCode=${parkCode}&q=${locationId}&api_key=${process.env.REACT_APP_API_KEY_2}`)
-    //         .then(res => {
-    //             if(res.ok) {
-    //                  return res.json()
-    //             }else{
-    //                 return Promise.reject(
-    //                     new Error(`Unexpected status code ${res.status}`)
-    //                 );
-    //             }
-    //         })
-    //         .then( info => {
-    //             console.log(info.data);
-    //             console.log(info.data[0])
-    //             setCampsite(info.data[0])})
-    //         .catch(error =>{
-    //             console.error(error)
-    //             navigate("/campsite/search")
-    //         })
+    //     if(user){
+    //        fetchFavorite();
+    //        console.log(isFavorite);
     //     }
+        
+    // },[])
 
-    // }, []);
+
+
+    useEffect(() => {
+        if(locationId){
+            fetch(`https://developer.nps.gov/api/v1/campgrounds?parkCode=${parkCode}&q=${locationId}&api_key=${process.env.REACT_APP_API_KEY_2}`)
+            .then(res => {
+                if(res.ok) {
+                     return res.json()
+                }else{
+                    return Promise.reject(
+                        new Error(`Unexpected status code ${res.status}`)
+                    );
+                }
+            })
+            .then( info => {
+                setCampsite(info.data[0])})
+            .catch(error =>{
+                console.error(error)
+                navigate("/campsite")
+            })
+        }
+
+    }, []);
 
     function handleFavoriteAdd(){
         const jwtToken = localStorage.getItem('jwt_token');
@@ -163,12 +159,15 @@ export default function CampsiteDetail(){
     
     return(
         <>
+            {campsite&& <>
         <div className="mb-2 d-flex justify-content-between">
             <div>
-                <h2> {campsite.name} {user.userId}</h2>
+                <h2> {campsite.name}</h2>
             </div>
             <div>
-                {user && !isFavorite? <a><i className="bi bi-star fs-3" onClick={handleFavoriteAdd}></i></a> : <a  onClick={handleFavoriteDelete}><i className="bi bi-star-fill fs-3" style={{color: "#ffbf00"}}></i></a>  }
+                {user && (
+                    !isFavorite? <a><i className="bi bi-star fs-3" onClick={handleFavoriteAdd}></i></a> : <a  onClick={handleFavoriteDelete}><i className="bi bi-star-fill fs-3" style={{color: "#ffbf00"}}></i></a> 
+                )  }
             </div>
             
             
@@ -237,7 +236,7 @@ export default function CampsiteDetail(){
         <div className="mb-2">
             <ReviewList locationId = {locationId} campsite={campsite}/>
         </div>
+        </>}
         </>
-        
     );
 }

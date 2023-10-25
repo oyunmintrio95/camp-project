@@ -32,7 +32,7 @@ create table user_profile(
     app_user_id int not null,
     first_name varchar(50) not null,
     last_name varchar(50) not null,
-    `description` varchar(255) not null,
+    `description` text not null,
     dob date null,
     gender varchar(10) null,
     constraint fk_about_user_app_user_id

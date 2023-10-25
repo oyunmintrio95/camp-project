@@ -3,14 +3,16 @@ import { NavLink, Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
 
+import '../css/nav.css';
+
 function Nav() {
   const { user, logout } = useContext(AuthContext);
 
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-light">
+      <nav className="navbar navbar-expand-lg navbar-light mt-2">
         <NavLink className="navbar-brand" to="/">
-          CampenJoy
+          <img src='/campenjoy-logo.png' alt='CampenJoy Logo' width='200' />
         </NavLink>
         <button
           className="navbar-toggler"
@@ -33,25 +35,24 @@ function Nav() {
             {user && (
               <li className="nav-item">
                 <NavLink className="nav-link" to="/category">
-                  Categories
+                  My Page
                 </NavLink>
               </li>
             )}
           </ul>
+
           {!user && <div>
-             <Link to="/login">Login</Link>
-             { '  |  ' }
-             <Link to="/signup">Sign Up?</Link>
+             <Link className="btn me-3" id="loginBtn" to="/login">Login</Link>
+             <Link className="btn" id="signupBtn" to="/signup">Sign Up</Link>
             </div>}
           {user && (
             <div>
               <span className="badge rounded-pill text-bg-info">
                 {user.username}
               </span>
-              {}
-              <button
-                onClick={logout}
-                className="btn btn-outline-secondary btn-sm"
+              <button 
+                onClick={logout} id="logoutBtn"
+                className="btn ms-3"
               >
                 Log out
               </button>

@@ -14,7 +14,8 @@ export default function Login(){
     
       const { handleLoggedIn } = useContext(AuthContext);
     
-      const navigate = useNavigate()
+      const navigate = useNavigate();
+
     
       const handleSubmit = (evt) => {
         evt.preventDefault();
@@ -28,6 +29,8 @@ export default function Login(){
             setErrors(['Invalid username/password.']);
           });
       };
+
+      
     
       const handleChange = (evt) => {
         const nextCredentials = {...credentials};

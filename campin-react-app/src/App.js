@@ -16,6 +16,7 @@ import UserprofileForm from "./components/userProfile/UserprofileForm";
 import ReviewForm from "./components/review/ReviewForm";
 import ReviewDetail from "./components/review/ReviewDetail";
 import ReviewDeleteConfirm from "./components/review/ReviewDeleteConfirm";
+import Home from "./Home";
 
 const TIMEOUT_MILLISECONDS = 14 * 60 * 1000;
 
@@ -73,12 +74,13 @@ function App() {
           <Nav />
           <Routes>
             {/* home, user login/registration */}
-            <Route path="/" />
+            <Route path="/" element={<Home/>} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />}/>
 
             {/* userProfile */}
             <Route path="/userprofile/add" element={<UserprofileForm />} />
+            <Route path="/userprofile/edit/:userProfileId" element={<UserprofileForm />}/>
 
             {/* campsites */}
             <Route path="/campsite" element={<SearchCampsite/>} />
@@ -89,6 +91,8 @@ function App() {
             <Route path="/review/detail/:reviewId" element = {<ReviewDetail/>}/>
             <Route path="/review/edit/:reviewId" element={<ReviewForm/>}/>
             <Route path="/review/delete/:reviewId" element={<ReviewDeleteConfirm/>}/>
+
+            <Route path="*" element={<Error />}/>
           </Routes>
         </Router>
       </AuthContext.Provider>

@@ -1,0 +1,10 @@
+#loginBtn, #logoutBtn {
+    background-color: #457762;
+    color: white;
+}
+
+#signupBtn{
+    border: 1px solid #457762;
+    color: #457762;
+    background-color: white;
+}

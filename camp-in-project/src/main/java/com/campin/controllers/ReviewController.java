@@ -50,46 +50,13 @@ public class ReviewController {
     public List<Review> findByLocationId(@PathVariable String locationId){return service.findByLocationId(locationId);}
 
     @PostMapping
-    public ResponseEntity<Object> add(@org.springframework.web.bind.annotation.RequestBody Review review){
-//        review.setAppUserId(review.getAppUserId());
+    public ResponseEntity<Object> add(@org.springframework.web.bind.annotation.RequestBody Review review) {
         Result<Review> result = service.add(review);
-        if(result.isSuccess()){
+        if (result.isSuccess()) {
             return new ResponseEntity<>(result.getPayload(), HttpStatus.CREATED);
         }
         return ErrorResponse.build(result);
-    }
 
-    @PostMapping("/upload")
-    public ResponseEntity<HashMap<String, String>> upload(MultipartFile file){
-        try{
-            S3Client s3 = S3Client
-                    .builder()
-                    .region(Region.US_EAST_1)
-                    .build();
-
-            PutObjectRequest request = PutObjectRequest.builder()
-                    .bucket("campen-joy-bucket")
-                    .key(file.getOriginalFilename())
-                    .build();
-
-            GetUrlRequest urlRequest = GetUrlRequest.builder()
-                    .bucket("campen-joy-bucket")
-                    .key(file.getOriginalFilename())
-                    .build();
-
-            URL url = s3.utilities().getUrl(urlRequest);
-            System.out.println("The URL for  "+ file.getOriginalFilename() +" is "+ url);
-
-            HashMap<String, String> urlMap = new HashMap<>();
-            urlMap.put("url", url.toString());
-
-            PutObjectResponse response = s3.putObject(request,RequestBody.fromBytes(file.getBytes()));
-
-            return new ResponseEntity<>(urlMap, HttpStatus.CREATED);
-        }catch(IOException e){
-            System.err.println(e.getMessage());
-        }
-        return new ResponseEntity(null, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
 

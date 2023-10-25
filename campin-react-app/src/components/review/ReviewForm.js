@@ -92,7 +92,7 @@ export default function ReviewForm(){
         };
         event.preventDefault();
 
-        fetch("http://localhost:8080/api/review/upload", init)
+        fetch("http://localhost:8080/api/image/upload", init)
             .then((res) =>{
                 console.log("success!");
                 console.log(res);
@@ -266,7 +266,7 @@ export default function ReviewForm(){
                                 name='title'
                                 id='title'
                                 required
-                                // value={review.title}
+                                value={review.title}
                                 onChange={handleChange}
                             />
                         </div>
@@ -274,7 +274,9 @@ export default function ReviewForm(){
                 <div className='row mb-3'>
                     <div className='col'>
                             <label htmlFor='review'>Review</label>
-                            <textarea id="review" name="review" type="text" className="form-control" required onChange={handleChange} />
+                            <textarea id="review" name="review" type="text" className="form-control"
+                            value={review.review} 
+                            required onChange={handleChange} />
                     </div>
                 </div>
                 <div className='row mb-3'>

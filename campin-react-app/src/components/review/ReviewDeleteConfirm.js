@@ -1,5 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+
+import AuthContext from "../../context/AuthContext";
+
 
 export default function ReviewDeleteConfirm(){
     const [review, setReview] = useState(null);
@@ -86,7 +89,7 @@ export default function ReviewDeleteConfirm(){
 					<li>Content: {review.review}</li>
 				</ul>
                 <img src={review.imgUrl}/>
-				<button handleClick={handleDelete} classes='btn-danger me-2'>
+				<button onClick={handleDelete} className='btn btn-danger me-2'>
 					Delete
 				</button>
                 {/* should navigate to campiste detail maybe.. */}

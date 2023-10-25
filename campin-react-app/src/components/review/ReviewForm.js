@@ -28,9 +28,21 @@ export default function ReviewForm(){
     const[review, setReview] = useState(DEFAULT_REVIEW);
 
     const [errors, setErrors] = useState([]);
-    const [ecode, setEcode] = useState("");
-
     const navigate = useNavigate();
+    const { reviewId } = useParams();
+
+    useEffect(() => {
+        if(reviewId){
+            fetch(`http://localhost:8080/api/review/${reviewId}`)
+                .then(res => res.json())
+                .then(setReview)
+                .catch(error => {
+                    setErrors(error);
+                    //should navigate to campsite detail page.
+                    navigate=("/campsite");
+                })
+        }
+    },[reviewId])
 
     
 
@@ -39,9 +51,7 @@ export default function ReviewForm(){
     }
     
     const imgPreview = byId("imgPreview");
-    console.log("imgPreview" + imgPreview);
     const preview = byId("preview");
-    console.log("preview" + preview);
     let currentFile;
 
     function handleImgChange(event){
@@ -64,9 +74,7 @@ export default function ReviewForm(){
     
     }
     
-    // This sends the file to the Java backend (ImageUploadController.upload).
     function handleReviewSubmit(event){
-        console.log("am going to upload image");
         const formData = new FormData();
         formData.append("file", currentFile, currentFile.name);
 
@@ -83,6 +91,7 @@ export default function ReviewForm(){
             body: formData
         };
         event.preventDefault();
+
         fetch("http://localhost:8080/api/review/upload", init)
             .then((res) =>{
                 console.log("success!");
@@ -90,20 +99,19 @@ export default function ReviewForm(){
                 return res.json();
             } )
             .then((data) => {
-                console.log("image upload response: " + data)
-                console.log(typeof data);
-                // setEcode(data);
-                console.log("data:" + data);
                 return data;
             })
             .then((data) => {
-                console.log("submitting review");
-                console.log("url in submitting form: " + data.url);
                 setReview({...review,
                     imgUrl: data.url});
-                console.log("review after setting imgUrl: " + review);
-                createReview({...review,
-                    imgUrl: data.url});
+                if(reviewId > 0){
+                    updateReview({...review,
+                        imgUrl: data.url});
+                }else{
+                    createReview({...review,
+                        imgUrl: data.url});
+                }
+                
 
             })
             .catch(console.error);
@@ -125,7 +133,6 @@ export default function ReviewForm(){
     // }
 
     function createReview(newReview){
-        console.log("I'm in the creatReview function.")
         const jwtToken = localStorage.getItem('jwt_token');
         if (!jwtToken) {
             return Promise.reject('Unauthorized.')
@@ -143,7 +150,6 @@ export default function ReviewForm(){
         fetch("http://localhost:8080/api/review", config)
             .then(res => {
                 if(res.ok){
-                    console.log("review post success")
                     navigate("/campsite");
                 }else{
                     return res.json();
@@ -164,22 +170,37 @@ export default function ReviewForm(){
 
     }
 
+    function updateReview(newReview){
+        const jwtToken = localStorage.getItem('jwt_token');
+        if (!jwtToken) {
+            return Promise.reject('Unauthorized.')
+        }
+    
+        const config = {
+            method: "PUT",
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + jwtToken,
+            },
+            body: JSON.stringify(newReview)
+        };
+
+        fetch("http://localhost:8080/api/review/" + reviewId, config)
+        .then(res => {
+            if (res.ok) {
+                navigate('/campsite');
+            } else if (res.status === 400) {
+                return res.json();
+            }
+        })
+        .then(errors => {
+            setErrors(errors);
+        })
+        .catch(console.error);
+
+    }
+
     return (
-        // <>
-        //     <h1>Upload It!</h1>
-
-        //         <div className="form-group">
-        //             <input type="file" id="theFile" accept="image/*" className="form-control" onChange={handleImgChange}/>
-        //         </div>
-
-        //         <div class="form-group">
-        //             <button className="btn btn-primary" id="btnUpload" onClick={handleUpload}>Upload</button>
-        //         </div>
-
-        //         <div id="preview" className="form-group">
-        //             <img id="imgPreview"/>
-        //         </div>
-        // </>
         <>
 			{/* <h1>{reviewId > 0 ? 'Update' : 'Add'} Review</h1> */}
             <h1>Add Review</h1>
@@ -264,7 +285,7 @@ export default function ReviewForm(){
                                 type='text'
                                 name='imgUrl'
                                 id='imgUrl'
-                                // value={review.title}
+                                value={review.imgUrl}
                                 onChange={handleChange}
                             />
                         </div>
@@ -278,7 +299,11 @@ export default function ReviewForm(){
                  </div> */}
 
                 <div id="preview" className="form-group">
-                     <img id="imgPreview"/>
+                    <img id="imgPreview"/>
+                    {
+                        // reviewId && review.imgUrl? ( <img id="imgPreview" src={review.imgUrl}/>): ( <img id="imgPreview"/>)
+                    }
+                    
                  </div>
 				{errors.length > 0 && (
 					<div className='alert alert-danger'>

@@ -235,7 +235,7 @@ export default function CampsiteDetail(){
             </div>
         </div>
         <div className="mb-2">
-                <ReviewList locationId = {locationId}/>
+            <ReviewList locationId = {locationId} campsite={campsite}/>
         </div>
         </>
         

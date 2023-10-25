@@ -90,13 +90,14 @@ public class ReviewJdbcTemplateRepository implements ReviewRepository{
     public boolean update(Review review) {
         final String sql = """
                     update review set 
-                    title = ?, review =?, edit_date = ?
+                    title = ?, review =?, edit_date = ?, img_url =?
                     where review_id = ?;
                 """;
         return jdbcTemplate.update(sql,
                 review.getTitle(),
                 review.getReview(),
                 review.getEditDate(),
+                review.getImgUrl(),
                 review.getReviewId())>0;
     }
 

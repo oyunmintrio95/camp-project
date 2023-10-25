@@ -14,6 +14,8 @@ import SearchCampsite from "./components/campsite/SearchCampsite";
 import CampsiteDetail from "./components/campsite/CampsiteDetail";
 import UserprofileForm from "./components/userProfile/UserprofileForm";
 import ReviewForm from "./components/review/ReviewForm";
+import ReviewDetail from "./components/review/ReviewDetail";
+import ReviewDeleteConfirm from "./components/review/ReviewDeleteConfirm";
 
 const TIMEOUT_MILLISECONDS = 14 * 60 * 1000;
 
@@ -83,7 +85,10 @@ function App() {
             <Route path="/campsite/detail/:locationId" element={<CampsiteDetail/>}/>
 
             {/* review */}
-            <Route path="review/add" element={<ReviewForm/>} />
+            <Route path="/review/add" element={<ReviewForm/>} />
+            <Route path="/review/detail/:reviewId" element = {<ReviewDetail/>}/>
+            <Route path="/review/edit/:reviewId" element={<ReviewForm/>}/>
+            <Route path="/review/delete/:reviewId" element={<ReviewDeleteConfirm/>}/>
           </Routes>
         </Router>
       </AuthContext.Provider>

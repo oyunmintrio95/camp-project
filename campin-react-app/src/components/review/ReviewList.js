@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import ReviewCard from "./ReviewCard";
 
-export default function ReviewList({locationId}){
+import AuthContext from "../../context/AuthContext";
+
+export default function ReviewList({locationId, campsite}){
     const [reviews, setReview] = useState([]);
     const navigate = useNavigate();
+    const {user} = useContext(AuthContext);
 
     useEffect(() => {
         fetch(`http://localhost:8080/api/review/location/${locationId}`)
@@ -12,16 +15,30 @@ export default function ReviewList({locationId}){
         .then(data => setReview(data));
     },[]);
 
-    
+    let index = 0;
 
     return(
         <>
+
             {reviews.length > 0 ? (
-                <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4'>
-                {reviews.map(review => {
-                    return <ReviewCard review={review} key={review.reviewId}/>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Post Date</th>
+                            <th scope="col">Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {reviews.map(review => {
+                            index += 1;
+                            return <ReviewCard review={review} index={index} campsite={campsite} key={review.reviewId}/>
                 })}
-            </div>
+                    </tbody>
+                </table>
+                
             ): (
                 <div>No reviews yet. Add your Experience!</div>
             )}

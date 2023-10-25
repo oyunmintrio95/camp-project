@@ -94,7 +94,7 @@ public class ReviewController {
 
 
     @PutMapping("/{reviewId}")
-    public ResponseEntity<Object> update(@PathVariable int reviewId, @RequestParam Review review){
+    public ResponseEntity<Object> update(@PathVariable int reviewId, @org.springframework.web.bind.annotation.RequestBody Review review){
         if(reviewId != review.getReviewId()){
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }

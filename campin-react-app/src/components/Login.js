@@ -5,6 +5,10 @@ import { login } from "../services/authAPI";
 import AuthContext from "../context/AuthContext";
 import ValidationSummary from "./ValidationSummary";
 
+
+import '../css/buttonStyle.css';
+import '../css/login.css';
+
 export default function Login(){
     const [credentials, setCredentials] = useState({
         username: "",
@@ -39,9 +43,14 @@ export default function Login(){
       };
 
     return (
-        <div>
+      <div id="loginBox" style={{marginTop: '10%'}}>
+        <div className="container col-lg-6 col-sm-8 p-4 rounded-4 shadow" >
+          <div className="d-flex justify-content-center">
+            <img className="img-fluid" src="https://campen-joy-bucket.s3.amazonaws.com/campenjoy-logo.png" alt="campenjoy logo"/>
+          </div>
+          <div className="pt-3 pb-3">
           <ValidationSummary errors={errors} />
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className>
             <div>
               <div className="form-group">
                 <label htmlFor="label">Username</label>
@@ -67,16 +76,19 @@ export default function Login(){
                   required
                 />
               </div>
-              <div>
-                <Link to="/" className="btn btn-secondary">
-                  Cancel
-                </Link>
-                <button type="submit" className="btn btn-primary">
+              <div className="d-flex justify-content-end">
+                <button type="submit" className="btn buttonFill me-2" id="loginBtn2">
                   Log in
                 </button>
+                <Link to="/" className="btn buttonOutline">
+                  Cancel
+                </Link>
               </div>
             </div>
           </form>
+          </div>
         </div>
+
+      </div>
       );
 }

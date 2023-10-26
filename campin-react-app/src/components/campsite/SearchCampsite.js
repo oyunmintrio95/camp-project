@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import CampsiteDetail from "./CampsiteDetail";
 import Map from "../map/Map";
+import '../../css/searchCampsite.css'
 
 function SearchCampsite(){
 
@@ -47,24 +48,30 @@ function SearchCampsite(){
     }
     // console.log(campsites);
     return(
-        <div className="row">
-            <div className="col-3">
-                <form className="row doSearchCampsite" onSubmit={handleSearch}>
-                    <div className="col">
-                        <input type="text" className="form-control" id="p" name="p" placeholder="Search Campsite"
-                        onChange={handleChange}
-                        value={searchInput}></input>
-                    </div>
-                    <div className="col">
-                        <button className="btn btn-outline btn-success" type = 'submit'>Search</button>
-                    </div>
-                </form>
-            </div>
-            <div className="col">
+        <>
+        <div className="container" id="campSearchContainer">
+            <div className="row">
+                <div className="col">
+                    <form className="row doSearchCampsite" onSubmit={handleSearch}>
+                        <div className="col mb-2">
+                            <input type="text" className="form-control" id="p" name="p" placeholder="Search Campsite ex) CA, California, [campsite name]..."
+                            onChange={handleChange}
+                            value={searchInput}></input>
+                        </div>
+                        <div className="col">
+                            <button className="btn btn-outline btn-success" type = 'submit'>Search</button>
+                        </div>
+                    </form>
+                </div>
+                <div className="col rounded-2">
                 <Map campsites = {campsites}/>
+                </div>
             </div>
-            
         </div>
+         
+        </>
+        
+        
     );
 }
 export default SearchCampsite;

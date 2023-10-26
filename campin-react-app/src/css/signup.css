@@ -1,4 +1,15 @@
-#navLoginBtn, #logoutBtn{
+#introText{
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #457762;
+}
+
+#signupBox label{
+    font-weight: 500;
+    font-size: large;
+}
+
+#signupFormBtn{
     background-color: #457762;
     color: white;
     font-family: 'Rubik', sans-serif;
@@ -6,21 +17,21 @@
 
 }
 
-#navSignUpBtn{
+#signupCancelBtn{
     border: 1px solid #457762;
     color: #457762;
     background-color: white;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
-
 }
 
-#navLoginBtn:hover, #logoutBtn:hover{
+#signupFormBtn:hover{
     background-color: #365c4c;
     color: white;
+
 }
 
-#navSignUpBtn:hover{
+#signupCancelBtn:hover{
     background-color: #45776227;
     color:  #457762;
 }

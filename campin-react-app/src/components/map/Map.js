@@ -7,8 +7,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 const libraries = ["places"]
 const mapContainerStyle = {
-    width: '100vw',
-    height: "100vh",
+    width: '90vw',
+    height: "90vh",
 };
 const center = {
     lat :39.23636566733842,
@@ -82,24 +82,25 @@ export default function Map({campsites}){
                 onCloseClick={() => {
                     setSelected(null);
                 }}>
-                    <div className="row g-0">
+                    <div className=" d-flex row g-0" style={{width:"350px"}}>
                             <div className="col-md-4">
                                 {selected.images[0].url?
                                 <img src={selected.images[0].url} className="img-fluid rounded-start" alt={selected.images[0].altText} 
                                 style = {{height: 100, width:100}}></img> : <img src='/campsite_search_placeholder.jpg' className="img-fluid rounded-start" alt={selected.images[0].altText} 
                                 style = {{height: 100, width:100}}></img> }
                             </div>
-                            <div className="col-md-8">
+                            <div className="col">
                                 <div className="card-body">
                                     <h5 className="card-title">{selected.name}</h5>
-                                    <p className="card-text">{selected.addresses.length !==0? selected.addresses[0].line1: " " } {selected.addresses.length !==0?selected.addresses[0].city: " "},<br></br>{selected.addresses.length !==0? selected.addresses[0].stateCode: " "}, {selected.addresses.length !==0? selected.addresses[0].countryCode: " "}, {selected.addresses.length !==0? selected.addresses[0].postalCode: " "}</p>
+                                    <p className="card-text">{selected.addresses.length !==0? selected.addresses[0].line1: " " } {selected.addresses.length !==0?selected.addresses[0].city: " "}<br></br>{selected.addresses.length !==0? selected.addresses[0].stateCode: " "} {selected.addresses.length !==0? selected.addresses[0].countryCode: " "} {selected.addresses.length !==0? selected.addresses[0].postalCode: " "}</p>
+
                                 </div>
                                 <div className="mt-2 d-flex justify-content-end ">
                                     <Link className="btn btn-outline-success" to={`/campsite/detail/${selected.id}` } state = {selected.parkCode}>Detail</Link>
                                 </div>
                                 
                             </div>
-                        </div>
+                    </div>
                 </InfoWindow>
                 ): null}
 

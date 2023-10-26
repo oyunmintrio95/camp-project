@@ -1,12 +1,11 @@
-#navLoginBtn, #logoutBtn{
+.buttonFill{
     background-color: #457762;
     color: white;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
-
 }
 
-#navSignUpBtn{
+.buttonOutline{
     border: 1px solid #457762;
     color: #457762;
     background-color: white;
@@ -15,12 +14,13 @@
 
 }
 
-#navLoginBtn:hover, #logoutBtn:hover{
+.buttonFill:hover{
     background-color: #365c4c;
     color: white;
 }
 
-#navSignUpBtn:hover{
+.buttonOutline:hover{
     background-color: #45776227;
     color:  #457762;
+
 }

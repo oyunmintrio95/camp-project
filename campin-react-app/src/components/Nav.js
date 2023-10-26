@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
-
 import '../css/nav.css';
 
 function Nav() {
@@ -42,8 +41,8 @@ function Nav() {
           </ul>
 
           {!user && <div>
-             <Link className="btn me-3" id="loginBtn" to="/login">Login</Link>
-             <Link className="btn" id="signupBtn" to="/signup">Sign Up</Link>
+             <Link className="btn me-3" id="navLoginBtn" to="/login">Login</Link>
+             <Link className="btn buttonOutline" id="navSignUpBtn" to="/signup">Sign Up</Link>
             </div>}
           {user && (
             <div>
@@ -51,8 +50,8 @@ function Nav() {
                 {user.username}
               </span>
               <button 
-                onClick={logout} id="logoutBtn"
-                className="btn ms-3"
+                onClick={logout}
+                className="btn ms-3 buttonFill" id="logoutBtn"
               >
                 Log out
               </button>

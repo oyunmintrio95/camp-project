@@ -4,6 +4,9 @@ import { register } from "../services/authAPI";
 
 import ValidationSummary from "./ValidationSummary";
 
+import '../css/signup.css';
+import '../css/buttonStyle.css';
+
 function SignUp() {
   const [errors, setErrors] = useState([]);
   const [credentials, setCredentials] = useState({
@@ -42,7 +45,20 @@ function SignUp() {
   };
 
   return (
-    <div>
+    <div id="signupBox" style={{marginTop: '10%'}} className="d-flex justify-content-center">
+      <div className="container row col-lg-8 col-sm-10 p-4 rounded-4 shadow">
+        <div id='introText' className="col-4 text-center row justify-content-center align-items-center mt-4">
+          <div>
+            <img className="d-block img-fluid mb-4" src="https://campen-joy-bucket.s3.amazonaws.com/for-favicon.png"></img>
+            Welcome to CampenJoy!<br></br>
+            Sign up to become our member :)
+          </div>
+          <div>
+            
+          </div>
+         
+        </div>
+      <div className="col">
       <ValidationSummary errors={errors} />
       {success ? (
         <div className="alert alert-success">
@@ -89,17 +105,21 @@ function SignUp() {
                 required
               />
             </div>
-            <div>
-              <Link to="/" className="btn btn-secondary">
-                Cancel
-              </Link>
-              <button type="submit" className="btn btn-primary">
+            <div className="d-flex justify-content-end">
+            <button type="submit" id="signupFormBtn" className="btn buttonFill me-3">
                 Sign up
               </button>
+              <Link to="/" className="btn btn-secondary" id="signupCancelBtn">
+                Cancel
+              </Link>
+              
             </div>
           </div>
         </form>
       )}
+    </div>
+
+      </div>
     </div>
   );
 }

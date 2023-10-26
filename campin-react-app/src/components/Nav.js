@@ -10,7 +10,7 @@ function Nav() {
 
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-light mt-2">
+      <nav className="navbar navbar-expand-lg navbar-light mt-2 mb-2 ps-4 pe-4">
         <NavLink className="navbar-brand" to="/">
           <img src='/campenjoy-logo.png' alt='CampenJoy Logo' width='200' />
         </NavLink>
@@ -29,7 +29,7 @@ function Nav() {
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
               <NavLink className="nav-link" to="/campsite">
-                Campsites
+                Explore Campsites
               </NavLink>
             </li>
             {user && (

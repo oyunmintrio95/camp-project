@@ -2,6 +2,8 @@ import { useContext,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "./context/AuthContext";
 
+import './css/home.css'
+
 export default function Home(){
     const {user} = useContext(AuthContext);
     const navigate = useNavigate();
@@ -39,8 +41,42 @@ export default function Home(){
 
 
     return(
-        <div>
-            This is a home.
-        </div>
+        <>
+            <div id="home1">
+                <div className="d-flex justify-content-center">
+                       <div className="homeText">
+                            <div>Explore Information of </div>
+                            <div>
+                            National/State Park Campsites!
+                            </div>
+                        </div> 
+                </div>
+            </div>
+            <div id="home2">
+                <div className="d-flex justify-content-center">
+                       <div className="homeText" id="homeText2">
+                            <div>Find Out Campers'</div>
+                            <div>
+                                Live Experience of Campsites!
+                            </div>
+                        </div> 
+                </div>
+            </div>
+            <div id="home3">
+                <div >
+                       <div className="homeText" id="homeText3">
+                            Save your Favorite Campsites!
+                        </div> 
+                </div>
+            </div>
+            <div id="home4">
+                <div id="about" className="pt-3 ps-3">About the Developer</div>
+                <div >
+
+                </div>
+
+            </div>
+           
+        </>
     );
 }

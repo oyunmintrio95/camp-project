@@ -1,0 +1,59 @@
+#home1{
+    background-image: url('https://campen-joy-bucket.s3.amazonaws.com/camping-4303357_1280.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 75vh;
+}
+
+.homeText{
+    color: white;
+    font-family: 'Rubik', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    opacity: 1.0;
+    line-height: 4rem;
+    text-align: center;
+    /* margin-top: 5%; */
+    padding-top: 50px;
+    text-shadow: 1px 1px 3px #899499;
+}
+
+#home2{
+    background-image: url('https://campen-joy-bucket.s3.amazonaws.com/camping-7947056_1280+(1).jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 90vh;
+    /* width: 100%; */
+}
+
+#homeText2{
+    margin-top: 13%;
+    margin-left: 30%;
+}
+
+#home3{
+    background-image: url('https://campen-joy-bucket.s3.amazonaws.com/adventure-1851092_1280+1+(1).png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80vh;
+    opacity: 0.8;
+
+}
+
+#homeText3{
+    text-align: start;
+    margin-left: 10%;
+    padding-top: 150px;
+    text-shadow: 1px 1px 5px #363636;
+}
+
+#home4{
+    background-color: #EAF2F8;
+    height: 50vh;
+
+}
+#about{
+    font-family: 'Rubik', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+}

@@ -10,11 +10,19 @@ body {
 
 body, html {
   font-family: 'Rubik', sans-serif;
+  /* font-weight: 300; */
+  /* background-color: #EAF2F8; */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.container{
+  font-family: 'Rubik', sans-serif;
+  font-weight: 300;
+  background-color: #EAF2F8;
 }
 
 

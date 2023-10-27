@@ -202,7 +202,7 @@ export default function ReviewForm(){
         fetch("http://localhost:8080/api/review/" + reviewId, config)
         .then(res => {
             if (res.ok) {
-                navigate('/review/detail/'+reviewId);
+                navigate('/review/detail/'+reviewId, {state:campsite});
             } else if (res.status === 400) {
                 return res.json();
             }

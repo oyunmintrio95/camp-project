@@ -85,7 +85,7 @@ export default function ReviewDeleteConfirm(){
 				<div className='alert alert-success' role='alert'>
 					<p>
 						Successfully deleted review! Navigating back to
-						campsite search page ...{' '}
+						campsite detail page ...{' '}
 					</p>
 				</div>
 			)}

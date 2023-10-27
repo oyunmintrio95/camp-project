@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import './App.css';
 
 import Nav from "./components/Nav";
@@ -81,22 +81,22 @@ function App() {
             <Route path="/signup" element={<SignUp />}/>
 
             {/* userProfile */}
-            <Route path="/userprofile/add" element={<UserprofileForm />} />
-            <Route path="/userprofile/:userId" element={<UserprofileDetail/>}/>
-            <Route path="/userprofile/edit/:userProfileId" element={<UserprofileForm />}/>
+            <Route path="/userprofile/add" element={user ? <UserprofileForm /> : <Navigate to="/login" replace={true} />} />
+            <Route path="/userprofile/:userId" element={user ? <UserprofileDetail/>: <Navigate to="/login" replace={true} />}/>
+            <Route path="/userprofile/edit/:userProfileId" element={user? <UserprofileForm />:<Navigate to="/login" replace={true} />}/>
 
             {/* campsites */}
             <Route path="/campsite" element={<SearchCampsite/>} />
             <Route path="/campsite/detail/:locationId" element={<CampsiteDetail/>}/>
 
             {/* review */}
-            <Route path="/review/add" element={<ReviewForm/>} />
+            <Route path="/review/add" element={user? <ReviewForm/> : <Navigate to="/login" replace={true} />} />
             <Route path="/review/detail/:reviewId" element = {<ReviewDetail/>}/>
-            <Route path="/review/edit/:reviewId" element={<ReviewForm/>}/>
-            <Route path="/review/delete/:reviewId" element={<ReviewDeleteConfirm/>}/>
+            <Route path="/review/edit/:reviewId" element={user? <ReviewForm/> : <Navigate to="/login" replace={true} />}/>
+            <Route path="/review/delete/:reviewId" element={user? <ReviewDeleteConfirm/> : <Navigate to="/login" replace={true} />}/>
 
             {/* mypage */}
-            <Route path="/mypage" element={<MypageMain/>}/>
+            <Route path="/mypage" element={user? <MypageMain/>: <Navigate to="/login" replace={true} />}/>
 
             <Route path="*" element={<Error />}/>
           </Routes>

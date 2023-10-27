@@ -2,6 +2,27 @@
 ---
 <img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/intro_campenjoy.png"  width="800" height="400"/>
 
+## Installation Guide
+You need to run both camp-in-project(Backend) and campin-react-app(Frontend).
+* Run SQL in your MySQL workbench.
+  
+* To run camp-in-project(Backend)
+ *  Open IDE for Java
+ *  Open Folder of `camp-in-project`
+ *  You need to set environment Variables
+    * DB_URL
+    * DB_USERNAME
+    * DB_PASSWROD
+    * AWS_ACCESS_KEY
+    * AWS_SECRET_ACCESS_KEY
+ *  Run `App.java`
+   
+*  To run campin-react-app
+ * In your terminal, `cd` to campin-react-app
+ * `npm install` to install all the dependencies
+ * `npm start` or `npm run start` 
+   
+
 
 ## Table of Contents
 > 1. [ About the project ](#about-project)
@@ -12,7 +33,7 @@
 > 6. [ Technologies ](#technologies)
 > 7. [Database Schema](#database)
 > 8. [Presentation Documents](#presentation_documents)
-> 9. [Demonstration[(#demonstration)
+> 9. [Demonstration](#demonstration)
 ---
 
 <a name="about-project"></a>

@@ -45,7 +45,6 @@ public class ReviewService {
 
     }
     public Result<Review> update(Review review){
-        //TODO: set edit date
         Result<Review> result = validate(review);
 
         if(!result.isSuccess()){
@@ -82,16 +81,24 @@ public class ReviewService {
         if(review.getAppUserId() == 0){
             result.addMessage("appUserId is required", ActionStatus.INVALID);
         }
+        if(Validations.isNullORBlank(review.getAuthor())){
+            result.addMessage("author is required", ActionStatus.INVALID);
+        }
         if(Validations.isNullORBlank(review.getLocationId())){
             result.addMessage("locationId is required", ActionStatus.INVALID);
         }
         if(Validations.isNullORBlank(review.getTitle())){
             result.addMessage("title is required.", ActionStatus.INVALID);
+            return result;
         }
         if(review.getTitle().length() > 250){
             result.addMessage("title is too long.", ActionStatus.INVALID);
         }
         if(Validations.isNullORBlank(review.getReview())){
+            result.addMessage("review is required.", ActionStatus.INVALID);
+
+        }
+        if(Validations.isNullORBlank(review.getParkCode())){
             result.addMessage("review is required.", ActionStatus.INVALID);
         }
 

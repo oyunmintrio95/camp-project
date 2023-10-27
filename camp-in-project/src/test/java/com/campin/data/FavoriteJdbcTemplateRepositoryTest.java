@@ -71,6 +71,7 @@ class FavoriteJdbcTemplateRepositoryTest {
         Favorite favorite = new Favorite();
         favorite.setAppUserId(1);
         favorite.setLocationId("location1");
+        favorite.setParkCode("amid");
         return favorite;
     }
 

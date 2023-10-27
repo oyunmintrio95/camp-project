@@ -4,6 +4,7 @@ import jdk.jfr.Enabled;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 public class Review {
@@ -96,5 +97,18 @@ public class Review {
 
     public void setParkCode(String parkCode) {
         this.parkCode = parkCode;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Review review1 = (Review) o;
+        return reviewId == review1.reviewId && appUserId == review1.appUserId && Objects.equals(locationId, review1.locationId) && Objects.equals(title, review1.title) && Objects.equals(review, review1.review) && Objects.equals(author, review1.author) && Objects.equals(parkCode, review1.parkCode) && Objects.equals(postDate, review1.postDate) && Objects.equals(editDate, review1.editDate) && Objects.equals(imgUrl, review1.imgUrl);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(reviewId, appUserId, locationId, title, review, author, parkCode, postDate, editDate, imgUrl);
     }
 }

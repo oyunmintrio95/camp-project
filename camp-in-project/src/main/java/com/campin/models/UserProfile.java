@@ -1,6 +1,7 @@
 package com.campin.models;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 
 public class UserProfile {
@@ -66,5 +67,18 @@ public class UserProfile {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserProfile that = (UserProfile) o;
+        return userProfileId == that.userProfileId && appUserId == that.appUserId && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(description, that.description) && Objects.equals(dob, that.dob) && Objects.equals(gender, that.gender);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userProfileId, appUserId, firstName, lastName, description, dob, gender);
     }
 }

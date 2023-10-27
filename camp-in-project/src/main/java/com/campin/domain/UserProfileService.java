@@ -68,6 +68,10 @@ public class UserProfileService {
             return result;
         }
 
+        if(userProfile.getAppUserId() == 0){
+            result.addMessage("appUserId is required", ActionStatus.INVALID);
+        }
+
         if(Validations.isNullORBlank(userProfile.getFirstName())){
             result.addMessage("first name is required", ActionStatus.INVALID);
         }
@@ -80,9 +84,6 @@ public class UserProfileService {
             result.addMessage("description is required", ActionStatus.INVALID);
         }
 
-        if(userProfile.getDescription().length() >= 250){
-            result.addMessage("the length of description should be under 250 characters.", ActionStatus.INVALID);
-        }
 
         return result;
     }

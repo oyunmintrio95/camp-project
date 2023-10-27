@@ -12,6 +12,7 @@ public class FavoriteMapper implements RowMapper<Favorite> {
         Favorite favorite = new Favorite();
         favorite.setFavoriteId(rs.getInt("favorite_id"));
         favorite.setLocationId(rs.getString("location_id"));
+        favorite.setParkCode(rs.getString("park_code"));
         favorite.setAppUserId(rs.getInt("app_user_id"));
         return favorite;
     }

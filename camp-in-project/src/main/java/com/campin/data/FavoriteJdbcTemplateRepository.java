@@ -23,7 +23,7 @@ public class FavoriteJdbcTemplateRepository implements FavoriteRepository {
     @Override
     public List<Favorite> findAll() {
         final String sql = """
-                    select favorite_id, location_id, app_user_id
+                    select favorite_id, location_id, app_user_id, park_code
                     from favorite;
                 """;
         return jdbcTemplate.query(sql, new FavoriteMapper());
@@ -32,7 +32,7 @@ public class FavoriteJdbcTemplateRepository implements FavoriteRepository {
     @Override
     public List<Favorite> findByAppUserId(int appUserId) {
         final String sql = """
-                    select favorite_id, location_id, app_user_id
+                    select favorite_id, location_id, app_user_id, park_code
                     from favorite
                     where app_user_id = ?;
                 """;
@@ -42,7 +42,7 @@ public class FavoriteJdbcTemplateRepository implements FavoriteRepository {
     @Override
     public Favorite findById(int favoriteId) {
         final String sql = """
-                    select favorite_id, location_id, app_user_id
+                    select favorite_id, location_id, app_user_id, park_code
                     from favorite
                     where favorite_id = ?;
                 """;
@@ -54,7 +54,7 @@ public class FavoriteJdbcTemplateRepository implements FavoriteRepository {
     @Override
     public Favorite findByKey(int appUserId, String locationId) {
         final String sql = """
-                    select favorite_id, location_id, app_user_id
+                    select favorite_id, location_id, app_user_id, park_code
                     from favorite
                     where app_user_id = ? and location_id = ?;
                 """;
@@ -66,14 +66,15 @@ public class FavoriteJdbcTemplateRepository implements FavoriteRepository {
     @Override
     public Favorite add(Favorite favorite) {
         final String sql = """
-                            insert into favorite (app_user_id, location_id)
-                            values (?, ?);
+                            insert into favorite (app_user_id, location_id, park_code)
+                            values (?, ?, ?);
                             """;
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, favorite.getAppUserId());
             ps.setString(2, favorite.getLocationId());
+            ps.setString(3, favorite.getParkCode());
             return ps;
         }, keyHolder);
 

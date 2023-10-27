@@ -71,7 +71,8 @@ public class FavoriteService {
         Result<Favorite> result = new Result<>();
 
         if(favorite == null){
-            return null;
+            result.addMessage("favorite cannot be null", ActionStatus.INVALID);
+            return result;
         }
 
         if(favorite.getAppUserId() == 0){
@@ -79,6 +80,9 @@ public class FavoriteService {
         }
         if(Validations.isNullORBlank(favorite.getLocationId())){
             result.addMessage("locationId is required", ActionStatus.INVALID);
+        }
+        if(Validations.isNullORBlank(favorite.getParkCode())){
+            result.addMessage("park code is required", ActionStatus.INVALID);
         }
         if(isDuplicate(favorite)){
             result.addMessage("appUserId + locationId already exist", ActionStatus.INVALID);

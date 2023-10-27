@@ -43,6 +43,7 @@ create table user_profile(
 create table favorite(
 	favorite_id int primary key auto_increment,
     location_id varchar(100) not null,
+    park_code varchar(10) not null,
     app_user_id int not null,
     constraint fk_favorite_app_user_id
 		foreign key (app_user_id)
@@ -144,12 +145,13 @@ insert into review (app_user_id, location_id, title, review, img_url, park_code,
     (1, "EA81BC45-C361-437F-89B8-5C89FB0D0F86", "review title 1", "review content 1", "https://campen-joy-bucket.s3.amazonaws.com/landscape-g78e0b0e38_1280.jpg", "amis","john@smith.com"),
     (2, "1241C56B-7003-4FDF-A449-29DA8BCB0A41", "review title 2", "review content 2", "https://campen-joy-bucket.s3.amazonaws.com/landscape-g78e0b0e38_1280.jpg","grsm","sally@jones.com");
     
-insert into favorite (app_user_id, location_id)
-	values
-    (1, "EA81BC45-C361-437F-89B8-5C89FB0D0F86"),
-    (1, "1241C56B-7003-4FDF-A449-29DA8BCB0A41"),
-    (2, "EA81BC45-C361-437F-89B8-5C89FB0D0F86"),
-    (2, "1241C56B-7003-4FDF-A449-29DA8BCB0A41");
+
+insert into favorite (app_user_id, location_id, park_code)
+values
+(1, "EA81BC45-C361-437F-89B8-5C89FB0D0F86", "amis"),
+(1, "1241C56B-7003-4FDF-A449-29DA8BCB0A41", "grsm"),
+(2, "EA81BC45-C361-437F-89B8-5C89FB0D0F86", "amis"),
+(2, "1241C56B-7003-4FDF-A449-29DA8BCB0A41", "grsm");
     
 insert into user_profile ( app_user_id, first_name, last_name, `description`, dob, gender)
 	values

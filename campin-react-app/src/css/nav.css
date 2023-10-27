@@ -3,6 +3,7 @@
     color: white;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
+    border: none;
 
 }
 
@@ -23,4 +24,22 @@
 #navSignUpBtn:hover{
     background-color: #45776227;
     color:  #457762;
+}
+
+.usernameBadge{
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    color: #104c4e;
+}
+
+.usernameBadge span{
+    font-weight: 600;
+}
+
+.nav-item .nav-link{
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    color: #457762;;
 }

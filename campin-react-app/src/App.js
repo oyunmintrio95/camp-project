@@ -17,6 +17,8 @@ import ReviewForm from "./components/review/ReviewForm";
 import ReviewDetail from "./components/review/ReviewDetail";
 import ReviewDeleteConfirm from "./components/review/ReviewDeleteConfirm";
 import Home from "./Home";
+import MypageMain from "./components/mypage/MypageMain";
+import UserprofileDetail from "./components/userProfile/UserprofileDetail";
 
 const TIMEOUT_MILLISECONDS = 14 * 60 * 1000;
 
@@ -80,6 +82,7 @@ function App() {
 
             {/* userProfile */}
             <Route path="/userprofile/add" element={<UserprofileForm />} />
+            <Route path="/userprofile/:userId" element={<UserprofileDetail/>}/>
             <Route path="/userprofile/edit/:userProfileId" element={<UserprofileForm />}/>
 
             {/* campsites */}
@@ -91,6 +94,9 @@ function App() {
             <Route path="/review/detail/:reviewId" element = {<ReviewDetail/>}/>
             <Route path="/review/edit/:reviewId" element={<ReviewForm/>}/>
             <Route path="/review/delete/:reviewId" element={<ReviewDeleteConfirm/>}/>
+
+            {/* mypage */}
+            <Route path="/mypage" element={<MypageMain/>}/>
 
             <Route path="*" element={<Error />}/>
           </Routes>

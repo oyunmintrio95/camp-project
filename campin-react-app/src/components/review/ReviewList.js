@@ -4,6 +4,8 @@ import ReviewCard from "./ReviewCard";
 
 import AuthContext from "../../context/AuthContext";
 
+import '../../css/reviewList.css'
+
 export default function ReviewList({locationId, campsite}){
     const [reviews, setReview] = useState([]);
     const navigate = useNavigate();
@@ -18,10 +20,10 @@ export default function ReviewList({locationId, campsite}){
     let index = 0;
 
     return(
-        <>
+        <div id="reviewTable">
 
             {reviews.length > 0 ? (
-                <table class="table">
+                <table className="table table-striped" >
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -40,8 +42,8 @@ export default function ReviewList({locationId, campsite}){
                 </table>
                 
             ): (
-                <div>No reviews yet. Add your Experience!</div>
+                <div id="noReviewList">No reviews yet. Share your Experience by add a review!</div>
             )}
-        </>
+        </div>
     );
 }

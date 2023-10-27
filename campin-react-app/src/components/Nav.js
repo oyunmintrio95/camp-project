@@ -33,7 +33,7 @@ function Nav() {
             </li>
             {user && (
               <li className="nav-item">
-                <NavLink className="nav-link" to="/category">
+                <NavLink className="nav-link" to="/mypage">
                   My Page
                 </NavLink>
               </li>
@@ -45,10 +45,10 @@ function Nav() {
              <Link className="btn buttonOutline" id="navSignUpBtn" to="/signup">Sign Up</Link>
             </div>}
           {user && (
-            <div>
-              <span className="badge rounded-pill text-bg-info">
-                {user.username}
-              </span>
+            <div className="d-flex">
+              <div className="usernameBadge mt-2 me-3">
+                Welcome! <span>{user.username}</span> 🌳
+              </div>
               <button 
                 onClick={logout}
                 className="btn ms-3 buttonFill" id="logoutBtn"

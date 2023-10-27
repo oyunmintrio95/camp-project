@@ -4,6 +4,7 @@ import {Link, useParams, useNavigate, useLocation} from 'react-router-dom';
 import AuthContext from '../../context/AuthContext';
 
 import './imageUpload.css';
+import '../../css/reviewForm.css';
 
 
 export default function ReviewForm(){
@@ -31,6 +32,15 @@ export default function ReviewForm(){
     const navigate = useNavigate();
     const { reviewId } = useParams();
 
+    if(reviewId){
+        console.log("reviewId: " + reviewId)
+    }
+
+    if(campsite){
+        console.log("campsite is here!")
+        console.log(campsite);
+    }
+
     useEffect(() => {
         if(reviewId){
             fetch(`http://localhost:8080/api/review/${reviewId}`)
@@ -38,8 +48,7 @@ export default function ReviewForm(){
                 .then(setReview)
                 .catch(error => {
                     setErrors(error);
-                    //should navigate to campsite detail page.
-                    navigate=("/campsite");
+                    navigate=("/error");
                 })
         }
     },[reviewId])
@@ -105,16 +114,21 @@ export default function ReviewForm(){
                 setReview({...review,
                     imgUrl: data.url});
                 if(reviewId > 0){
+                    console.log("am I even in here?")
                     updateReview({...review,
                         imgUrl: data.url});
                 }else{
                     createReview({...review,
                         imgUrl: data.url});
                 }
-                
 
             })
-            .catch(console.error);
+            .catch(error => {
+                console.error(error);
+                navigate("/error")
+            });
+
+        
     };
 
     function handleChange(event){
@@ -150,7 +164,7 @@ export default function ReviewForm(){
         fetch("http://localhost:8080/api/review", config)
             .then(res => {
                 if(res.ok){
-                    navigate("/campsite");
+                    navigate("/campsite/detail/"+campsite.id, {state:campsite.parkCode});
                 }else{
                     return res.json();
                 }
@@ -188,7 +202,7 @@ export default function ReviewForm(){
         fetch("http://localhost:8080/api/review/" + reviewId, config)
         .then(res => {
             if (res.ok) {
-                navigate('/campsite');
+                navigate('/review/detail/'+reviewId);
             } else if (res.status === 400) {
                 return res.json();
             }
@@ -196,30 +210,20 @@ export default function ReviewForm(){
         .then(errors => {
             setErrors(errors);
         })
-        .catch(console.error);
+        .catch( error => {
+            console.error(error);
+            navigate("/campsite/detail/"+campsite.id, {state:campsite.parkCode});
+        });
 
     }
 
     return (
-        <>
-			{/* <h1>{reviewId > 0 ? 'Update' : 'Add'} Review</h1> */}
-            <h1>Add Review</h1>
-			<form className='solar-panel-form' onSubmit={handleReviewSubmit} >
+        <div className="container rounded-3" id = "reviewForm">
+			<h2 className="pt-2">{reviewId > 0 ? 'Update' : 'Add'} a Review :)</h2>
+			<form className='review-form' onSubmit={handleReviewSubmit} >
 				<div className='row  mb-3'>
 					<div className='col-12 col-md-6'>
-						<label htmlFor='appUserId'>appUserId</label>
-						<input
-							className='form-control'
-							type='number'
-							name='appUserId'
-							id='appUserId'
-                            readOnly
-							value={user.userId}
-							onChange={handleChange}
-						/>
-					</div>
-					<div className=' col'>
-                        <label htmlFor='author'>author</label>
+                    <label htmlFor='author'>Username</label>
 						<input
 							className='form-control'
 							type='text'
@@ -227,6 +231,17 @@ export default function ReviewForm(){
 							id='author'
                             readOnly
 							value={user.username}
+							onChange={handleChange}
+						/>
+						
+					</div>
+					<div className=' col'>
+                    <input
+							className='form-control d-none'
+							type='number'
+							name='appUserId'
+							id='appUserId'
+							value={user.userId}
 							onChange={handleChange}
 						/>
 					</div>
@@ -275,6 +290,7 @@ export default function ReviewForm(){
                     <div className='col'>
                             <label htmlFor='review'>Review</label>
                             <textarea id="review" name="review" type="text" className="form-control"
+                            rows = "5"
                             value={review.review} 
                             required onChange={handleChange} />
                     </div>
@@ -283,7 +299,7 @@ export default function ReviewForm(){
                     <div className='col'>
                             <label htmlFor='imgUrl'>Image URL</label>
                             <input
-                                className='form-control'
+                                className='form-control d-none'
                                 type='text'
                                 name='imgUrl'
                                 id='imgUrl'
@@ -296,15 +312,8 @@ export default function ReviewForm(){
                     <input type="file" id="theFile" accept="image/*" className="form-control" onChange={handleImgChange}/>
                 </div>
 
-                 {/* <div class="form-group">
-                    <button className="btn btn-primary" id="btnUpload" onClick={handleUpload}>Upload</button>
-                 </div> */}
-
                 <div id="preview" className="form-group">
-                    <img id="imgPreview"/>
-                    {
-                        // reviewId && review.imgUrl? ( <img id="imgPreview" src={review.imgUrl}/>): ( <img id="imgPreview"/>)
-                    }
+                    <img id="imgPreview" className="img-fluid"/>
                     
                  </div>
 				{errors.length > 0 && (
@@ -317,15 +326,15 @@ export default function ReviewForm(){
 						</ul>
 					</div>
 				)}
-				<div>
+				<div className="d-flex justify-content-end pb-3">
 					<button id = 'btnUpload' className='btn btn-primary me-2' type='submit'>
 						Submit
 					</button>
-					<Link className='btn btn-secondary' to='/campsite'>
+					<Link className='btn btn-secondary' id="reviewCancelBtn" to='/campsite/detail/'>
 						Cancel
 					</Link>
 				</div>
 			</form>
-		</>
+		</div>
     );
 }

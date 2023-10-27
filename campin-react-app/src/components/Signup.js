@@ -30,14 +30,25 @@ function SignUp() {
       return;
     }
 
-    register(credentials).then((data) => {
-      if (data && data.errors) {
-        setErrors(data.errors);
-      } else {
+    register(credentials)
+      .then(data => {
+        console.log("success");
+        console.log(data);
         setSuccess(true);
+      })
+      .catch(error => {
+        console.log(error)
+        setErrors(error);
+      })
+
+    // register(credentials).then((data) => {
+    //   if (data && data.errors) {
+    //     setErrors(data.errors);
+    //   } else {
+    //     setSuccess(true);
   
-      }
-    });
+    //   }
+    // });
   };
 
   const validateForm = () => {
@@ -53,18 +64,19 @@ function SignUp() {
             Welcome to CampenJoy!<br></br>
             Sign up to become our member :)
           </div>
-          <div>
-            
-          </div>
          
         </div>
       <div className="col">
       <ValidationSummary errors={errors} />
       {success ? (
-        <div className="alert alert-success">
-          Congratulations {credentials.username}, you have been registered.
+        <div className="d-flex align-items-center flex-column" id="successBox">
+          Congratulations {credentials.username}! <br></br>
+          You have been registered.
           Login and let's make a profile!
-          <Link to="/login">Login</Link>.
+          <div className="d-flex jusify-content-end mt-3">
+          <Link className="btn btn-success" to="/login">Login</Link>
+          </div>
+          
         </div>
       ) : (
         <form onSubmit={handleSubmit}>

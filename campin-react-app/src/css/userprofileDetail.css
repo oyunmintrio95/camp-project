@@ -1,19 +1,22 @@
-#loginBox label{
+#userDetailBox h2{
     font-weight: 500;
-    font-size: large;
-    
+    color:#104c4e;
 }
 
-#loginBtn2{
-    width: 100%;
+#userDetailBox label{
+    font-weight: 500;
+    color: rgb(59, 58, 58);
+}
+
+#profileEditBtn{
     background-color: #457762;
     color: white;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
-    border: none;
 }
 
-#loginBtn2:hover{
+#profileEditBtn:hover{
     background-color: #365c4c;
     color: white;
 }
+

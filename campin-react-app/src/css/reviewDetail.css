@@ -1,24 +1,21 @@
-#introText{
-    font-weight: 700;
-    font-size: 1.3rem;
-    color: #457762;
+#reviewDetailBox h2{
+    font-weight: 800;
 }
 
-#signupBox label{
+#reviewDetailBox .detailTitles{
+    font-size: 1.2rem;
     font-weight: 500;
-    font-size: large;
+    color: rgb(59, 58, 58);
 }
 
-#signupFormBtn{
+#reviewEditBtn{
     background-color: #457762;
     color: white;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
-    border: none;
-
 }
 
-#signupCancelBtn{
+#reviewDeleteBtn{
     border: 1px solid #457762;
     color: #457762;
     background-color: white;
@@ -26,21 +23,18 @@
     font-weight: 500;
 }
 
-#signupFormBtn:hover{
+#reviewEditBtn:hover{
     background-color: #365c4c;
     color: white;
-
 }
 
-#signupCancelBtn:hover{
+#reviewDeleteBtn:hover{
     background-color: #45776227;
     color:  #457762;
 }
 
-#successBox{
-    font-weight: 700;
-    font-size: 1.3rem;
-    color: rgb(103, 103, 103);
-    margin-top: 10%;
-    text-align: center;
+#reviewDetailBox #reviewReview{
+    width: 500px;
+    font-weight: 500;
+    /* color: #457762; */
 }

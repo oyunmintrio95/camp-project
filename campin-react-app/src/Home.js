@@ -69,13 +69,13 @@ export default function Home(){
                         </div> 
                 </div>
             </div>
-            <div id="home4">
+            {/* <div id="home4">
                 <div id="about" className="pt-3 ps-3">About the Developer</div>
                 <div >
 
                 </div>
 
-            </div>
+            </div> */}
            
         </>
     );

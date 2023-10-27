@@ -1,0 +1,36 @@
+.errorContainer{
+    height: 200px;
+    width: 800px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -400px;
+    line-height: 4rem;
+}
+
+.errorMessage{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #457762;
+}
+
+.errorMessage #oops{
+    font-size: 3rem;
+}
+
+.errorContainer #homeBtn{
+    width: 100%;
+    background-color: #457762;
+    color: white;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    border: none;
+}
+
+.errorContainer #homeBtn:hover{
+    background-color: #365c4c;
+    color: white;
+}
+

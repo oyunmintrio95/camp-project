@@ -67,6 +67,11 @@ export default function CampsiteDetail(){
 
 
     useEffect(() => {
+        if(user){
+                   fetchFavorite();
+                   console.log(isFavorite);
+                }
+                
         if(locationId){
             fetch(`https://developer.nps.gov/api/v1/campgrounds?parkCode=${parkCode}&q=${locationId}&api_key=${process.env.REACT_APP_API_KEY_2}`)
             .then(res => {
@@ -102,7 +107,7 @@ export default function CampsiteDetail(){
             body: JSON.stringify({
                 appUserId: user.userId,
                 locationId: locationId,
-                // parkCode: campsite.parkCode,
+                parkCode: campsite.parkCode,
             })
         }
 
@@ -178,14 +183,14 @@ export default function CampsiteDetail(){
         
         <div className="row justify-content-evenly mb-2">
             <div className = "col-6">
-            { campsite.images[0].url?
+            { campsite.images.length !== 0?
                                 <img src={campsite.images[0].url} className="img-fluid rounded-3" alt={campsite.images[0].altText} 
-                                style = {{height: 500, width:500, resizeMode : 'contain'}}></img> : <img src='/campsite_search_placeholder.jpg' class="img-fluid rounded-start" alt={campsite.images[0].altText} 
-                                style = {{height: 100, width:100}}></img> }
+                                style = {{height: 500, width:500, resizeMode : 'contain'}}></img> : <img src='/campsite_search_placeholder.jpg' class="img-fluid rounded-3" alt="camp photo" 
+                                style = {{height: 500, width:500}}></img> }
             </div>
             <div className = "col mb-2">
                 <div className="mb-2 ">
-                    <span className="detailTitles">Location: </span> {campsite.addresses.length !==0?campsite.addresses[0].line1: " " } {campsite.addresses.length !==0? campsite.addresses[0].city: " "},<br></br>{campsite.addresses.length !==0? campsite.addresses[0].stateCode: " "}, {campsite.addresses.length !==0? campsite.addresses[0].countryCode: " "}, {campsite.addresses.length !==0? campsite.addresses[0].postalCode: " "}
+                    <span className="detailTitles">Location: </span> {campsite.addresses.length !==0?campsite.addresses[0].line1: " " } {campsite.addresses.length !==0? campsite.addresses[0].city: " "}<br></br>{campsite.addresses.length !==0? campsite.addresses[0].stateCode: " "} {campsite.addresses.length !==0? campsite.addresses[0].countryCode: " "} {campsite.addresses.length !==0? campsite.addresses[0].postalCode: " "}
                 </div>
                 <div className="mb-2">
                     <span className="detailTitles">ParkCode: </span> {campsite.parkCode}
@@ -215,6 +220,22 @@ export default function CampsiteDetail(){
                 </div>
             </div>
         </div>
+        { campsite.reservationInfo !== "" &&
+             <div className="mb-2">
+             <span className="detailTitles">Reservation Info: </span>
+             <div>
+                 {campsite.reservationInfo}
+             </div>    
+         </div>
+        }
+        { campsite.reservationUrl.length !== "" &&
+             <div className="mb-2">
+             <span className="detailTitles">Reservation URL: </span>
+             <div>
+                <a href={`${campsite.reservationUrl}`} target="_blank"> {campsite.reservationUrl}</a> 
+             </div>    
+         </div>
+        }
         <div className="mb-2">
                     <span className="detailTitles">Description: </span>
                     <div>
@@ -237,7 +258,7 @@ export default function CampsiteDetail(){
                 <h3 className="ps-2">Reviews</h3>
             </div>
             <div>
-                {user && <Link className="btn btn-success" to={'/review/add'} state={campsite}>Add Review</Link>}
+                {user && <Link className="btn btn-success" to={'/review/add'} id='addReviewBtn' state={campsite}>Add Review</Link>}
             </div>
         </div>
         <div className="mb-4 ps-2">

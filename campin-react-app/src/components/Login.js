@@ -80,9 +80,6 @@ export default function Login(){
                 <button type="submit" className="btn buttonFill me-2" id="loginBtn2">
                   Log in
                 </button>
-                <Link to="/" className="btn buttonOutline">
-                  Cancel
-                </Link>
               </div>
             </div>
           </form>

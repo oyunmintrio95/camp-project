@@ -7,3 +7,16 @@
     font-weight: 500;
     color: rgb(59, 58, 58);
 }
+
+#addReviewBtn{
+    background-color: #457762;
+    color: white;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+}
+
+#addReviewBtn:hover{
+    background-color: #365c4c;
+    color: white;
+
+}

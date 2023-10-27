@@ -122,7 +122,7 @@ export default function UserProfileForm(){
         fetch("http://localhost:8080/api/userprofile/" + userProfile.userProfileId, config)
         .then(res => {
             if (res.ok) {
-                navigate('/');
+                navigate('/userprofile/'+user.userId);
             } else if (res.status === 400) {
                 return res.json();
             }
@@ -135,13 +135,14 @@ export default function UserProfileForm(){
     }
 
     return (
-        <div>
+        <div className="container">
           <ValidationSummary errors={errors} />
+          <h2 className="pt-2">Tell us about yourself!</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
             <input
                 type="text"
-                className="form-control"
+                className="form-control d-none"
                 id="appUserId"
                 name="appUserId"
                 value={user.userId}
@@ -181,6 +182,7 @@ export default function UserProfileForm(){
                   id="description"
                   name="description"
                   value={userProfile.description}
+                  rows="5"
                   placeholder="ex) your camping style, your hobby"
                   onChange={handleChange}
                   required
@@ -196,7 +198,6 @@ export default function UserProfileForm(){
                         name="dob"
                         value={userProfile.dob}
                         onChange={handleChange}
-                        required
                         />
                     </div>
                     <div className="col">

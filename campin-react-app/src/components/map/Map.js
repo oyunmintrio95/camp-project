@@ -84,9 +84,9 @@ export default function Map({campsites}){
                 }}>
                     <div className=" d-flex row g-0" style={{width:"350px"}}>
                             <div className="col-md-4">
-                                {selected.images[0].url?
+                                {selected.images.length !== 0?
                                 <img src={selected.images[0].url} className="img-fluid rounded-start" alt={selected.images[0].altText} 
-                                style = {{height: 100, width:100}}></img> : <img src='/campsite_search_placeholder.jpg' className="img-fluid rounded-start" alt={selected.images[0].altText} 
+                                style = {{height: 100, width:100}}></img> : <img src='/campsite_search_placeholder.jpg' className="img-fluid rounded-start" alt="camp photo"
                                 style = {{height: 100, width:100}}></img> }
                             </div>
                             <div className="col">

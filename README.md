@@ -29,20 +29,20 @@ CampenJoy is a camp community web application where campers can find National/St
 <a name="solutions"></a>
 ## 3. Solutions
 > 1. Difficult to visually recognize campsites' locations
->   &lt; Users can search campsites and populate them in Google map API, in one map
+>  <br>  &gt; Users can search campsites and populate them in Google Map API, in one map
 > 2. Too much work to access all the campsite's websites
->   &lt; Users can save all favorite campsites and revisit them in my favorite lists.
+>  <br>  &gt; Users can save all their favorite campsites and revisit them in their favorite lists.
 >        Which makes them easier to compare.
 > 3. Difficult to collect campers' experience at certain campsites
->   &gt; Users can share and get real experiences for each campsites on campsite detail page.
+>  <br> &gt; Users can share and get real experiences for each campsite on campsite detail page.
 
 <a name="task_lists"></a>
 ## 4. Task Lists
-
+⌞ [plan.md](https://github.com/oyunmintrio95/camp-project/blob/main/plan.md "Task Lists")
 
 <a name="proposal"></a>
 ## 5. Proposal
-
+⌞ [proposal.md](https://github.com/oyunmintrio95/camp-project/blob/main/proposal.md "Proposal")
 
 <a name="technologies"></a>
 ## 6. Technologies

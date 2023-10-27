@@ -68,10 +68,13 @@ CampenJoy is a camp community web application where campers can find National/St
 
 <a name="database"></a>
 ## 7. Database Schema
-<img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/technologies_campenjoy.png"  width="800" height="400"/>
+<img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/campenjoy-erd.png"  width="800" height="400"/>
 
 <a name="presentation_documents"></a>
 ## 8. Presentation Documents
+* Recommend to read in the pdf file.
+⌞ [CampenJoy_Presentation_Hayoung_Cheon.pdf](https://github.com/oyunmintrio95/camp-project/blob/main/documents/CampenJoy%20MVP%20Presentation_Hayoung%20Cheon.pdf "Presentation pdf file")
+⌞ [CampenJoy_Presentation_Hayoung_Cheon.ppt]("https://github.com/oyunmintrio95/camp-project/blob/main/documents/CampenJoy%20MVP%20Presentation_Hayoung%20Cheon.pptx" "Presentation ppt file")
 
 <a name="demonstration"></a>
 ## 9. Demonstration

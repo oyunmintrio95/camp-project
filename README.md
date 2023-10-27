@@ -110,6 +110,10 @@ CampenJoy is a camp community web application where campers can find National/St
 * UserProfile
 <img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/gif/userprofile_campenjoy.gif"  width="800" height="400"/>
 <br>
+* Error Page
+<img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/error_page_campenjoy.png"  width="800" height="400"/>
+<br>
+
 
 
 

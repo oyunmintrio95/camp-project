@@ -1,8 +1,6 @@
-# CampenJoy
+# CampenJoy Proposal
+## Camping Community Website
 ---
-
-
-
 ## Table of Contents
 1. [ Problem Description ](#problem-description)
 2. [ Technical Solution ](#technical-solution)

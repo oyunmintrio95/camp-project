@@ -1,6 +1,6 @@
 # CampenJoy
 ---
-<img src=["https://github.com/hykim-king/GAGOODA/blob/main/doc/main.png"](https://github.com/oyunmintrio95/camp-project/blob/main/documents/intro_campenjoy.png)  width="800" height="400"/>
+<img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/intro_campenjoy.png"  width="800" height="400"/>
 
 
 ## Table of Contents

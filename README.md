@@ -68,13 +68,48 @@ CampenJoy is a camp community web application where campers can find National/St
 
 <a name="database"></a>
 ## 7. Database Schema
-<img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/technologies_campenjoy.png"  width="800" height="400"/>
+<img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/campenjoy-erd.png"  width="800" height="400"/>
 
 <a name="presentation_documents"></a>
 ## 8. Presentation Documents
+* Recommend to read in the pdf file.
+  <br>
+⌞ [CampenJoy_Presentation_Hayoung_Cheon.pdf](https://github.com/oyunmintrio95/camp-project/blob/main/documents/CampenJoy%20MVP%20Presentation_Hayoung%20Cheon.pdf "Presentation pdf file")
+<br>
+⌞ [CampenJoy_Presentation_Hayoung_Cheon.ppt](https://github.com/oyunmintrio95/camp-project/blob/main/documents/CampenJoy%20MVP%20Presentation_Hayoung%20Cheon.pptx "Presentation ppt file")
 
 <a name="demonstration"></a>
 ## 9. Demonstration
+* Landing Page
+<img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/gif/home_campenjoy.gif"  width="800" height="400"/>
+<br>
+* Login
+<img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/gif/login_campenjoy.gif"  width="800" height="400"/>
+<br>
+* Search Campsites
+<img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/gif/search_campenjoy.gif"  width="800" height="400"/>
+<br>
+* Campsite Detail
+<img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/gif/camp_detail_campenjoy.gif"  width="800" height="400"/>
+<br>
+* Add a Review
+<img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/gif/add_review_campenjoy.gif"  width="800" height="400"/>
+<br>
+* Edit a Review
+<img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/gif/edit_review_campenjoy.gif"  width="800" height="400"/>
+<br>
+* Delete a Review
+<img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/gif/delete_review_campenjoy.gif"  width="800" height="400"/>
+<br>
+* Favorite List
+<img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/gif/mypage_campenjoy.gif"  width="800" height="400"/>
+<br>
+* SignUp
+<img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/gif/signup_campenjoy.gif"  width="800" height="400"/>
+<br>
+* UserProfile
+<img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/gif/userprofile_campenjoy.gif"  width="800" height="400"/>
+<br>
 
 
 

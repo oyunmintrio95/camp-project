@@ -46,9 +46,29 @@ CampenJoy is a camp community web application where campers can find National/St
 
 <a name="technologies"></a>
 ## 6. Technologies
+<img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/technologies_campenjoy.png"  width="800" height="400"/>
+* FrontEnd
+  * React JS
+  * HTML
+  * CSS
+  * React BootStrap
+  * BootStrap
+* BackEnd
+  * Java
+  * Spring boot Web framework
+  * Maven Dependencies
+  * JDBC
+  * Unit Testing: JUnit, Mockito
+* DB/API
+  * Local Database: MySQL
+  * Public Data API: National Park Service API
+  * Cloud Database: AWS S3 Bucket
+  * REST Controller API
+  * Google Map API       
 
 <a name="database"></a>
 ## 7. Database Schema
+<img src="https://github.com/oyunmintrio95/camp-project/blob/main/documents/technologies_campenjoy.png"  width="800" height="400"/>
 
 <a name="presentation_documents"></a>
 ## 8. Presentation Documents
